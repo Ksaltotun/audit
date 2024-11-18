@@ -1,0 +1,24 @@
+@import '../../colors.scss';
+
+.Header {
+    background-color: white;
+    height: 100%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr 7fr 1fr;
+
+    & h3 {
+        margin: 0;
+        display: block;
+    }
+    & .AuthInfo{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        & button, span {
+            display: block;
+        }
+    }
+    
+}

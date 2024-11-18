@@ -1,0 +1,113 @@
+{
+  "reportMessages": [
+    {
+      "dateApp": "2024-11-16T09:12:16.386Z",
+      "idEvent": 0,
+      "eventTags": [
+        "Security",
+        "SystemError"
+      ],
+      "appInfo": {
+        "appName": "KIS",
+        "systemDetail": {
+          "security": {
+            "roles": "role change"
+          }
+        }
+      },
+      "user": {
+        "userId": "ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
+        "userName": "Lord",
+        "userRole": "admin"
+      },
+      "message": "Была изменена роль пользователя с 'пользователь' на 'администратор' ",
+      "notes": {
+        "sourceAddress": "192.168.0.2",
+        "dateKIS": "2024-11-16T09:16:16.386Z"
+      },
+      "category": [
+        "Не соответствует регламенту",
+        "Требует проведения аудита"
+      ]
+    },
+    {
+      "dateApp": "2024-11-16T09:12:16.386Z",
+      "idEvent": "7a6744ef-2edc-4ef5-9ff7-f88b1f871afa",
+      "eventTags": [
+        "SystemError"
+      ],
+      "appInfo": {
+        "appName": "ASU",
+        "systemDetail": "JOBS"
+      },
+      "user": {
+        "userId": 0,
+        "userName": "Keany Reeves",
+        "userRole": "user"
+      },
+      "message": "Ошибка 500 по запросу через API.V2",
+      "notes": {
+        "sourceAddress": "192.168.0.4",
+        "dateKIS": "2024-11-16T09:16:10.386Z"
+      },
+      "cateory": [
+        "Соответствует регламенту",
+        "Требует наладки работы шины обмена"
+      ]
+    },
+    {
+      "dateApp": "2024-11-16T09:13:16.386Z",
+      "idEvent": 0,
+      "eventTags": [
+        "Security",
+        "SystemError"
+      ],
+      "appInfo": {
+        "appName": "GSZ",
+        "systemDetail": {
+          "security": {
+            "roles": "role change"
+          }
+        }
+      },
+      "user": {
+        "userId": 0,
+        "userName": "Saruman",
+        "userRole": "admin"
+      },
+      "message": "Это был не нескафе",
+      "notes": {
+        "sourceAddress": "192.138.0.1",
+        "dateKIS": "2024-11-16T09:13:16.386Z"
+      },
+      "category": [
+        "Какая-то мясорубка"
+      ]
+    },
+    {
+      "dateApp": "2024-11-16T09:19:16.386Z",
+      "idEvent": 0,
+      "eventTags": [
+        "Security",
+        "SystemError"
+      ],
+      "appInfo": {
+        "appName": "KIS",
+        "systemDetail": "main"
+      },
+      "user": {
+        "userId": 0,
+        "userName": "Lord",
+        "userRole": "admin"
+      },
+      "message": "Сгорела клавиатура и монитор",
+      "notes": {
+        "sourceAddress": "192.168.0.1",
+        "dateKIS": "2024-11-16T09:17:16.386Z"
+      },
+      "category": [
+        "Требует проведения аудита"
+      ]
+    }
+  ]
+}

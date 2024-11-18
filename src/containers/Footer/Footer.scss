@@ -1,0 +1,14 @@
+@import '../../colors.scss';
+
+.Footer {
+    background-color: white;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & h5 {
+        margin: 0;
+        display: block;
+    }
+}

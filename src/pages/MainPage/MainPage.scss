@@ -1,0 +1,46 @@
+@import '../../colors.scss';
+@import '../../sizes.scss';
+
+.MainPage {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: grid;
+
+    grid-template-columns: 1fr 8fr;
+    grid-template-rows: 60px 1fr 60px;
+    grid-template-areas: 
+    "header header"
+    "leftmenu content"
+    "footer footer";
+
+    .headMenuBox {
+        grid-area: header;
+        background-color: white;
+    }
+    .leftMenuBox{
+        display: flex;
+        flex-direction: column;
+        padding: 10px 10px 0px 2px;
+        gap: 2px;
+        background-color: white;
+        grid-area: leftmenu;
+    }
+    .contentBox{
+        background-color: white;
+        grid-area: content;
+    }
+
+    .footerBox {
+        background-color: white;
+        grid-area: footer;
+    }
+
+
+
+
+    
+
+}

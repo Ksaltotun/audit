@@ -1,0 +1,40 @@
+@import '../../colors.scss';
+
+.NavButton {
+    font-family: "Nunito Sans", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    font-size: 22px;
+    font-weight: 500;
+    min-height: 48px;
+    padding-right: 16px;
+    padding-left: 16px;
+    line-height: 28px;
+    color: #B1B1B1;
+    cursor: pointer;
+
+    .NavBox {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        justify-content: flex-end;
+        padding: 8px;
+    }
+
+    &[data-active="active"] {
+        box-shadow: 12px 0px 8px -9px #4880FF inset;
+
+        .NavBox {
+
+            border-radius: 4px;
+        }
+
+        span {
+            display: block;
+            color: #4880FF;
+            text-align: center;
+
+        }
+    }
+}
