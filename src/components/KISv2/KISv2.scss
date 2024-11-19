@@ -1,0 +1,59 @@
+@import '../../colors.scss';
+
+.KISv2{
+
+    width: 100px;
+    height: 100px;
+
+    svg .svg-kis-green{
+        fill: rgb(8, 244, 8);
+            animation: blinkG 1s ease;
+            animation-iteration-count: infinite;
+            @keyframes blinkG {
+                from {
+                    fill:rgb(8, 244, 8); 
+                }
+                50%{
+                    fill:rgba(33, 67, 35, 0.6)
+                }
+                to {
+                    fill: rgb(8, 244, 8);
+                }
+            }
+    }
+    svg .svg-kis-yellow{
+        fill: rgb(232, 229, 14);
+            animation: blinkY 3s ease;
+            animation-iteration-count: infinite;
+            @keyframes blinkY {
+                from {
+                    fill:rgb(232, 229, 14); 
+                }
+                50%{
+                    fill:rgba(33, 67, 35, 0.6)
+                }
+                to {
+                    fill: rgb(232, 229, 14);
+                }
+            }
+    }
+
+    svg .svg-kis-red{
+        fill: rgb(219, 16, 16);
+            animation: blinkR 2s ease;
+            animation-iteration-count: infinite;
+            @keyframes blinkR {
+                from {
+                    fill:rgb(219, 16, 16); 
+                }
+                50%{
+                    fill:rgba(33, 67, 35, 0.6)
+                }
+                to {
+                    fill: rgb(219, 16, 16);
+                }
+            }
+    }
+
+    
+}

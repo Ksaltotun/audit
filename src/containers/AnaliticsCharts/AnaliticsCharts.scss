@@ -1,0 +1,30 @@
+@import '../../colors.scss';
+
+.AnaliticsCharts {
+    height: 90%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    & div{
+        border: 1px solid red;
+    }
+
+    .div1 {
+        grid-area: 1 / 1 / 4 / 4;
+        
+    }
+
+    .div2 {
+        grid-area: 1 / 4 / 5 / 7;
+    }
+
+    .div3 {
+        grid-area: 4 / 1 / 7 / 4;
+    }
+
+    .div4 {
+        grid-area: 5 / 4 / 7 / 7;
+    }
+}

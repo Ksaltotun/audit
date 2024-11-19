@@ -4,9 +4,11 @@ import './ServiceStatus.scss'
 
 
 export const ServiceStatus = (props) => {
-
+   
     return (
-        <div className='ServiceStatus' >
+        <div className={'ServiceStatus ' + props.dataStatus?.className}>
+
+
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 style={{
@@ -62,10 +64,10 @@ export const ServiceStatus = (props) => {
                         >
                             <path
                                 id="pcScreen"
-                                data-status={props.dataStatus}
+                                data-status={props.dataStatus?.status}
                                 style={{
                                     mixBlendMode: "multiply",
-                                    
+
                                 }}
                                 d="M370 70H60v200h310z"
                                 className="tertiary"

@@ -4,7 +4,7 @@ export interface InputProps {
     changeFunction: Function
 }
 
-export type RoutesType = 'main' | '/' | null | 'admin' | 'schema' | 'issues'
+export type RoutesType = 'main' | '/' | null | 'admin' | 'schema' | 'issues' | 'analitics'
 
 export interface IPagesNames {
     name: Routes,
@@ -13,7 +13,7 @@ export interface IPagesNames {
 
 
 export interface IButtonProps {
-    type: 'login' | 'signin' | 'increment' | 'navigate',
+    type: 'login' | 'signin' | 'navigate',
     text: string,
     routeTo?: RoutesType
 }

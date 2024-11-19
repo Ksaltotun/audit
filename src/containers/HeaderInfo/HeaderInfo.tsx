@@ -6,7 +6,10 @@ export const HeaderInfo: React.FC = () => {
 
     return (
         <div className='HeaderInfo'>
-            
+        <div className='Logo'>
+           
+        </div>
+        <span>КИС "Аудит"</span> 
         </div>
     )
 }

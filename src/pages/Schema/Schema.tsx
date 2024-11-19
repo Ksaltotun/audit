@@ -9,7 +9,7 @@ export const Schema: React.FC = () => {
 
     return (
         <section className='Schema'>
-            <h2>Schema</h2>
+            <h2>Схема систем КИС</h2>
             
             <ServicesBox/>
 

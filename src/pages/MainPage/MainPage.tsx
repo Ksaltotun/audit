@@ -31,7 +31,8 @@ export const MainPage: React.FC = () => {
             </header>
             <aside className='leftMenuBox'>
                 <NavButton type='login' text={'Админка'} routeTo={'admin'} />
-                <NavButton type='login' text={'Проблемы'} routeTo={'issues'} />
+                <NavButton type='login' text={'Аналитика'} routeTo={'analitics'} />
+                <NavButton type='login' text={'Отчеты'} routeTo={'issues'} />
                 <NavButton type='login' text={'Схема'} routeTo={'schema'} />
             </aside>
             <section className='contentBox'>

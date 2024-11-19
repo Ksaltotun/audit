@@ -3,6 +3,7 @@ import './Header.scss'
 import { HeaderInfo } from '../HeaderInfo/HeaderInfo'
 import { routePage } from '../../redux/reducers/ActionCreators'
 import { useAppDispatch } from '../../hooks/redux'
+import { Button } from '../../components/Button/Button'
 
 export const Header: React.FC = () => {
 
@@ -15,12 +16,10 @@ export const Header: React.FC = () => {
 
             </div>
             <div className="AuthInfo">
-                <span>User_name</span>
+
                 <span>Admin</span>
-                <button onClick={() => {
-                    dispatch(routePage('/'))
-                    navigate('/', { replace: false })
-                }}>EXIT</button>
+
+                <Button type={'navigate'} text={'Выход'} />
             </div>
         </div>
     )

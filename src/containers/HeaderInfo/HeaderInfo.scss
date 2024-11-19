@@ -1,5 +1,20 @@
 @import '../../colors.scss';
 
 .HeaderInfo {
-  
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+span {
+    display: block;
+    color: white;
+}
+    .Logo {
+        width: 40px;
+        height: 40px;
+        background-image: url(../../assets/logoSS.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 }
