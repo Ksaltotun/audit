@@ -1,14 +1,19 @@
 import { useNavigate } from 'react-router-dom'
-
+import { useState } from 'react';
+import { Button, Modal } from 'antd';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
+import { toggleModal } from '../../redux/reducers/ActionCreators';
 import './ServiceStatus.scss'
 
 
 export const ServiceStatus = (props) => {
-   
+    const dispatch = useAppDispatch()
+
     return (
-        <div className={'ServiceStatus ' + props.dataStatus?.className}>
-
-
+        <div key={props.dataStatus.id} 
+        className={'ServiceStatus ' + props.dataStatus?.className} 
+        onClick={()=>dispatch(toggleModal(true))}
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 style={{
@@ -282,7 +287,6 @@ export const ServiceStatus = (props) => {
                     </g>
                 </g>
             </svg>
-
         </div>
     )
 }

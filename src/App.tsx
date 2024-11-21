@@ -5,6 +5,7 @@ import { AdminPage } from './pages/AdminPage/AdminPage';
 import { Issues } from './pages/Issues/Issues';
 import { Schema } from './pages/Schema/Schema';
 import { Analitics } from './pages/Analitics/Analitics';
+import { Observ } from './pages/Observ/Observ';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
           <Route index element={<AdminPage />} />
           <Route path="*" element={<AdminPage />} />
           <Route path="analitics" element={<Analitics />} />
+          <Route path="observe" element={<Observ />} />
           <Route path="issues" element={<Issues />} />
           <Route path="schema" element={<Schema />} />
         </Route>

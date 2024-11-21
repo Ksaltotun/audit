@@ -11,6 +11,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import { NavButton } from '../../components/NavButton/NavButton'
 import { IReportMessage, IUser } from '../../type'
 import { reportsApi } from '../../service/ReportService'
+import { ModalWindow } from '../../components/ModalWindow/ModalWindow'
 
 
 
@@ -25,23 +26,27 @@ export const MainPage: React.FC = () => {
     // }
 
     return (
+        <>
+        <ModalWindow/>
         <section className='MainPage'>
-            <header className='headMenuBox'>
-                <Header />
-            </header>
-            <aside className='leftMenuBox'>
-                <NavButton type='login' text={'Админка'} routeTo={'admin'} />
-                <NavButton type='login' text={'Аналитика'} routeTo={'analitics'} />
-                <NavButton type='login' text={'Отчеты'} routeTo={'issues'} />
-                <NavButton type='login' text={'Схема'} routeTo={'schema'} />
-            </aside>
-            <section className='contentBox'>
-                <Outlet />
-            </section>
-            <footer className='footerBox'>
-                <Footer />
-            </footer>
+        <header className='headMenuBox'>
+            <Header />
+        </header>
+        <aside className='leftMenuBox'>
+            <NavButton type='login' text={'Админка'} routeTo={'admin'} />
+            <NavButton type='login' text={'Обзор'} routeTo={'observe'} />
+            <NavButton type='login' text={'Аналитика'} routeTo={'analitics'} />
+            <NavButton type='login' text={'Отчеты'} routeTo={'issues'} />
+            <NavButton type='login' text={'Схема'} routeTo={'schema'} />
+        </aside>
+        <section className='contentBox'>
+            <Outlet />
         </section>
+        <footer className='footerBox'>
+            <Footer />
+        </footer>
+    </section></>
+        
     )
 }
 

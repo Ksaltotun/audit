@@ -3,7 +3,7 @@ import { Button } from '../../components/Button/Button'
 
 import { Input } from '../../components/Input/Input'
 
-import './AnaliticsCharts.scss'
+import './Observation.scss'
 import { useState } from 'react'
 
 import { IReportMessage } from '../../type'
@@ -14,22 +14,13 @@ import { TagsChart } from '../../components/TagsChart/TagsChart'
 import { PieChart } from '../../components/PieChart/PieChart'
 import { LineChart } from '../../components/LineChart/LineChart'
 import { BarChart } from '../../components/BarChart/BarChart'
+import { CalendarChart } from '../../components/CalendarChart/CalendarChart'
 
 
-export const AnaliticsCharts: React.FC = () => {
+export const Observation: React.FC = () => {
     return (
-        <div className='AnaliticsCharts' >
-            <div className="div1">
-            <TagsChart /> </div>
-            <div className="div2"> 
-            <PieChart/>
-            </div>
-            <div className="div3"> 
-                <LineChart/>
-            </div>
-            <div className="div4"> 
-                <BarChart/>
-            </div>
+        <div className='Observation' >
+           <CalendarChart/>
         </div>
     )
 }

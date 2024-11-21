@@ -4,11 +4,15 @@ export interface InputProps {
     changeFunction: Function
 }
 
-export type RoutesType = 'main' | '/' | null | 'admin' | 'schema' | 'issues' | 'analitics'
+export type RoutesType = 'main' | '/' | null | 'admin' | 'schema' | 'issues' | 'analitics' | 'observe'
 
 export interface IPagesNames {
     name: Routes,
     isPageLoading: boolean
+}
+
+export interface IModalVisible {
+    isVisible: bool
 }
 
 
