@@ -1,10 +1,11 @@
-import { useNavigate } from 'react-router-dom'
 import { ResponsiveStream } from '@nivo/stream'
-import { linearGradientDef } from '@nivo/core'
+import { reportsApi } from '../../service/ReportService'
 import './TagsChart.scss'
 
 
 export const TagsChart = (props) => {
+ const appNames = []
+
    const data = [
     {
       "Raoul": 86,

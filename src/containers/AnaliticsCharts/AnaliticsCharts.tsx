@@ -15,14 +15,39 @@ import { PieChart } from '../../components/PieChart/PieChart'
 import { LineChart } from '../../components/LineChart/LineChart'
 import { BarChart } from '../../components/BarChart/BarChart'
 
+interface IProps {
+    props: IReportMessage[]
+}
 
-export const AnaliticsCharts: React.FC = () => {
+export const AnaliticsCharts: React.FC<IProps> = ({props}:IProps) => {
+    console.log(props)
+
+    const perSystems = new Map()
+
+
+    props.forEach(rep=>{
+        const name = rep.appInfo.appName
+        if (perSystems.has(name)) {
+            perSystems.set(name, perSystems.get(name) + 1)
+        } else {
+            perSystems.set(name, 1)
+        }
+    })
+
+    console.log(perSystems)
+
+    // {
+    //     "id": "scala",
+    //     "label": "scala",
+    //     "value": 422,
+    //     "color": "hsl(3, 70%, 50%)"
+    //   },
     return (
         <div className='AnaliticsCharts' >
             <div className="div1">
             <TagsChart /> </div>
             <div className="div2"> 
-            <PieChart/>
+            <PieChart props={perSystems}/>
             </div>
             <div className="div3"> 
                 <LineChart/>

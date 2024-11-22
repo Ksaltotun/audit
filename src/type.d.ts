@@ -25,7 +25,7 @@ export interface IButtonProps {
 export interface IReportMessage {
     dateApp: Date, //Дата и время события в системе
     idEvent: IdType, //Идентификатор события
-    eventTags: EventTag[], // Классификация произошедшего события системой
+    event: EventTagType, // Классификация произошедшего события системой
     appInfo: IAppInfo, // Информация о системе (модуле, подразделении в которой произощло событие)
     user: IUser, //пользователь системы
     message: string, // Человекочитаемый текст, определяется системой
@@ -36,13 +36,13 @@ export interface IReportMessage {
 
 export type IdType = number | string //либо натуральное число либо GUID (строка)
 
-export type EventTagType = 'Security' | 'SystemError' | 'UserAction' // тег(признак) события
+export type EventTagType = 'security' | 'systemError' | 'systemAction' | 'userAction'// тег(признак) события
 
 export interface IAppInfo {
     appName: AppName, // Имя системы, согласуется системой с КИС 
-    systemDetail: string | object, // Определятеся системой, описывает структуру модуль
+    systemDetail: string, // Определятеся системой, описывает структуру модуль
                               // - подмодуль - функциональная часть и т. д, до 4 уровней вложенности
-}
+}                               //строка, где иерархия определяется через точку
 
 export interface IUser {
     userId: IdType, // Уникальный идентификатор пользователя в системе
@@ -56,4 +56,6 @@ export interface INotes {
 }
 
 export type CategoryType = string[] // Пример: в соответствии с регламентом, с нарушением регламента
+
+
 

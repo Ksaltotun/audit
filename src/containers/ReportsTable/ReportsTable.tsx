@@ -30,13 +30,10 @@ export const ReportsTable: React.FC = () => {
             pageSize: 10,
         },
     });
-
-
-
     const columns: ColumnsType<IReportMessage> = [
         {
             title: 'Id в КИС "Аудит"',
-            dataIndex: 'id',
+            dataIndex: 'idKIS',
             sorter: true,
             width: '20%',
         },
@@ -58,21 +55,13 @@ export const ReportsTable: React.FC = () => {
         },
         {
             title: 'Теги',
-            dataIndex: 'eventTags',
+            dataIndex: 'event',
             sorter: true,
-            render: (_, { eventTags }) => (
-                <>
-                    {eventTags.map((tag) => {
-                        let color = tag.length > 10 ? 'red' : 'yellow';
-                        if (tag === 'security') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
+            render: (_, {event}) => (
+                <>  
+                    <Tag color={'red'} >
+                                {event.toUpperCase()}
                             </Tag>
-                        );
-                    })}
                 </>
             ),
             width: '20%',
