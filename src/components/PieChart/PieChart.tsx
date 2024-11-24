@@ -1,14 +1,13 @@
-import { ResponsivePie } from '@nivo/pie'
+import { ResponsivePie, ResponsivePieCanvas } from '@nivo/pie'
 
 import './PieChart.scss'
 import { SYSTEMS_COLOR_SETTINGS } from '../../utils'
 
 interface IProps {
-  props: Map<string, number>
+  props: Map<string, any>
 }
 
 export const PieChart: React.FC<IProps> = ({props}: IProps) => {
-
     
    const data: any[] = []
 
@@ -16,15 +15,16 @@ export const PieChart: React.FC<IProps> = ({props}: IProps) => {
     data.push({
       "id": k,
       "label": SYSTEMS_COLOR_SETTINGS.get(k).label,
-      "value": v,
+      "value": v.num,
       "color": SYSTEMS_COLOR_SETTINGS.get(k).color
     })
   })
     return (
-      <ResponsivePie
+      <ResponsivePieCanvas
       data={data}
-      margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+      margin={{ top: 40, right: 150, bottom: 80, left: 0 }}
       innerRadius={0.5}
+      
       padAngle={0.7}
       cornerRadius={3}
       activeOuterRadiusOffset={8}
@@ -38,10 +38,7 @@ export const PieChart: React.FC<IProps> = ({props}: IProps) => {
               ]
           ]
       }}
-      arcLinkLabelsSkipAngle={10}
-      arcLinkLabelsTextColor="#333333"
-      arcLinkLabelsThickness={2}
-      arcLinkLabelsColor={{ from: 'color' }}
+      enableArcLinkLabels={false}
       arcLabelsSkipAngle={10}
       arcLabelsTextColor={{
           from: 'color',
@@ -54,11 +51,11 @@ export const PieChart: React.FC<IProps> = ({props}: IProps) => {
       }}
        legends={[
           {
-              anchor: 'right',
+              anchor: 'top-right',
               direction: 'column',
               justify: false,
-              translateX: 0,
-              translateY: 56,
+              translateX: 20,
+              translateY: 0,
               itemsSpacing: 6,
               itemWidth: 100,
               itemHeight: 18,

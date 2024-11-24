@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
 })
 
 export const setupStore = () => {
-    console.log('*', reportsApi.middleware)
+  
     return configureStore({
         reducer: rootReducer,
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(reportsApi.middleware) 

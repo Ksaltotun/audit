@@ -27,7 +27,7 @@ export const ReportsTable: React.FC = () => {
     const [tableParams, setTableParams] = useState<TableParams>({
         pagination: {
             current: 1,
-            pageSize: 10,
+            pageSize: 5,
         },
     });
     const columns: ColumnsType<IReportMessage> = [

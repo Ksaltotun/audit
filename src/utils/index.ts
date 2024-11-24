@@ -5,7 +5,7 @@ export const SYSTEMS_COLOR_SETTINGS = new Map<string, any>([
         color: "red"
     }],
   ["GSZ", {
-    label: "Государственная служба занятости",
+    label: "ГСЗН",
     color: "green"
 }],
   ["ASU", {
