@@ -1,6 +1,4 @@
 
-
-import { ServiceStatus } from '../../components/ServiceStatus/ServiceStatus'
 import { ServicesBox } from '../../containers/ServicesBox/ServicesBox'
 import './Schema.scss'
 
@@ -12,7 +10,6 @@ export const Schema: React.FC = () => {
             <h2>Схема систем КИС</h2>
             
             <ServicesBox/>
-
             </section>
     )
 }
