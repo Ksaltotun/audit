@@ -1,0 +1,24 @@
+@import '../../colors.scss';
+
+.IssuesFilter {
+    display: grid;
+grid-template-columns: repeat(3, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 0px;
+border: 1px solid $mainBlue;
+border-radius: 5px;
+    & .addBlock{
+        svg {
+            cursor: pointer;
+        }
+    }
+
+}
+
+.filterHead { grid-area: 1 / 1 / 2 / 2; }
+.addBlock { grid-area: 1 / 3 / 2 / 4; justify-self: end;}
+.filtersList { grid-area: 2 / 1 / 3 / 4;}
+
+
+

@@ -2,11 +2,14 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { reportsApi } from "../service/ReportService";
 import leftMenuReducer from "./reducers/LeftMenuSlice";
 import ModalWindowReducer from "./reducers/ModalWindowSlice";
+import filterIssuesReducer from "./reducers/FilterIssuesSlice";
+import { filterIssuesSlice } from "./reducers/FilterIssuesSlice";
 
 
 const rootReducer = combineReducers({
     leftMenuReducer,
     ModalWindowReducer,
+    filterIssuesReducer, 
     [reportsApi.reducerPath]: reportsApi.reducer
 })
 

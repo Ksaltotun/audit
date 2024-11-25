@@ -57,5 +57,8 @@ export interface INotes {
 
 export type CategoryType = string[] // Пример: в соответствии с регламентом, с нарушением регламента
 
+export interface IFulterOptions{
+    filters: any[]
+}
 
 
