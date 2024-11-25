@@ -41,7 +41,7 @@ export type EventTagType = 'security' | 'systemError' | 'systemAction' | 'userAc
 export interface IAppInfo {
     appName: AppName, // Имя системы, согласуется системой с КИС 
     systemDetail: string, // Определятеся системой, описывает структуру модуль
-                              // - подмодуль - функциональная часть и т. д, до 4 уровней вложенности
+    // - подмодуль - функциональная часть и т. д, до 4 уровней вложенности
 }                               //строка, где иерархия определяется через точку
 
 export interface IUser {
@@ -57,8 +57,12 @@ export interface INotes {
 
 export type CategoryType = string[] // Пример: в соответствии с регламентом, с нарушением регламента
 
-export interface IFulterOptions{
-    filters: any[]
+export interface IDateFilter {
+    startDate: string,
+    endDate: string
 }
 
-
+export interface IFilters {
+    systemsFilter: string[],
+    dateFilter: IDateFilter
+}

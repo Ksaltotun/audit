@@ -1,21 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IFulterOptions, IPagesNames, RoutesType } from "../../type";
+import { IFilters } from "../../type";
 
-const initialState: IFulterOptions = {
-    filters: [
-        {field: 'system',
-            rule: 'contains',
-            sample: 's'
-        }
-    ]
+const initialState: IFilters = {
+    systemsFilter:[],
+    dateFilter:{
+        startDate: '',
+        endDate: ''
+    }
 }
 
 export const filterIssuesSlice = createSlice({
     name: 'filterIssues',
     initialState,
     reducers: {
-        addFilter (state, action: PayloadAction<any>){
-            state.filters = action.payload
+        addSystemFilter (state, action: PayloadAction<any>){
+            state.systemsFilter = [...action.payload]
+        },
+        addDateFilter (state, action: PayloadAction<any>){
+            state.dateFilter = action.payload
         }
     }
 })

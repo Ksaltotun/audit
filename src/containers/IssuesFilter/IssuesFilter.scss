@@ -2,10 +2,11 @@
 
 .IssuesFilter {
     display: grid;
-grid-template-columns: repeat(3, 1fr);
-grid-template-rows: repeat(2, 1fr);
-grid-column-gap: 0px;
-grid-row-gap: 0px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 10px;
 border: 1px solid $mainBlue;
 border-radius: 5px;
     & .addBlock{
@@ -19,6 +20,6 @@ border-radius: 5px;
 .filterHead { grid-area: 1 / 1 / 2 / 2; }
 .addBlock { grid-area: 1 / 3 / 2 / 4; justify-self: end;}
 .filtersList { grid-area: 2 / 1 / 3 / 4;}
-
+.controllBox { grid-area: 3 / 1 / 4 / 4; justify-self: end;}
 
 
