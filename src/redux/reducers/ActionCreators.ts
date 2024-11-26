@@ -27,3 +27,9 @@ export const addDateFilter = (payload: IDateFilter) => (dispatch: AppDispatch) =
         dispatch(filterIssuesSlice.actions.addDateFilter(payload))
     }
 }
+
+export const applyFilter = (payload: boolean) => (dispatch: AppDispatch) => {
+    {
+        dispatch(filterIssuesSlice.actions.applyFilter(payload))
+    }
+}

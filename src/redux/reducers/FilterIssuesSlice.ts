@@ -1,12 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IFilters } from "../../type";
+import { IDateFilter, IFilters } from "../../type";
 
 const initialState: IFilters = {
     systemsFilter:[],
     dateFilter:{
         startDate: '',
         endDate: ''
-    }
+    },
+    applied: false
 }
 
 export const filterIssuesSlice = createSlice({
@@ -16,8 +17,11 @@ export const filterIssuesSlice = createSlice({
         addSystemFilter (state, action: PayloadAction<any>){
             state.systemsFilter = [...action.payload]
         },
-        addDateFilter (state, action: PayloadAction<any>){
+        addDateFilter (state, action: PayloadAction<IDateFilter>){
             state.dateFilter = action.payload
+        },
+        applyFilter (state, action: PayloadAction<boolean>){
+            state.applied = action.payload
         }
     }
 })

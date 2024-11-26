@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import './IssuesFilter.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { Button, DatePicker, Dropdown, GetProps, MenuProps, Modal, Select, Space } from 'antd'
-import { addDateFilter, addSystemFilter } from '../../redux/reducers/ActionCreators'
+import { addDateFilter, addSystemFilter, applyFilter } from '../../redux/reducers/ActionCreators'
 import { useState } from 'react'
 import { DownOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
@@ -117,7 +117,7 @@ export const IssuesFilter: React.FC = () => {
                         style={{ top: 20 }}
                         open={modal1Open}
                         onOk={() => {
-
+                            dispatch(addDateFilter({...chosenDates}))
                             setModal1Open(false)
                         }}
                         onCancel={() => {
@@ -130,11 +130,13 @@ export const IssuesFilter: React.FC = () => {
 
                                 <RangePicker
                                     onChange={(_, dateString) => {
-                                        setChosenDates({
+                                        const res = {
                                             startDate: dateString[0],
                                             endDate: dateString[1]
-                                        })
-                                        dispatch(addDateFilter(chosenDates))
+                                        }
+                                        setChosenDates({...res})
+
+                                        
                                     }}
                                     showTime={{
                                         hideDisabledOptions: true,
@@ -208,19 +210,25 @@ export const IssuesFilter: React.FC = () => {
                                 startDate: '',
                                 endDate: ''
                             })
-                            dispatch(addDateFilter(chosenDates))
+                            dispatch(addDateFilter({
+                                startDate: '',
+                                endDate: ''
+                            }))
                         }}>
                             Удалить
                         </Button>
                     </div> : null
-
                 }
 
             </div>
             <div className="controllBox">
                 {
-                    systemsFilter.length ?
-                        <Button color="primary" variant="solid">
+                    systemsFilter.length || dateFilter.endDate || dateFilter.startDate ?
+                        <Button color="primary" variant="solid"
+                        onClick={()=>{
+                            dispatch(applyFilter(true))
+                        }}
+                        >
                             Применить
                         </Button>
                         : null

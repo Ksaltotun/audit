@@ -22,7 +22,7 @@ interface IProps {
 
 export const AnaliticsCharts: React.FC<IProps> = ({ props }: IProps) => {
 
-
+console.log(props)
     const perSystems = new Map()
     const perYear = new Map()
 

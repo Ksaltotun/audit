@@ -64,5 +64,6 @@ export interface IDateFilter {
 
 export interface IFilters {
     systemsFilter: string[],
-    dateFilter: IDateFilter
+    dateFilter: IDateFilter,
+    applied: boolean
 }

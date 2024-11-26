@@ -10,12 +10,13 @@ import { IReportMessage } from '../../type'
 import { GetProp, Table, TableProps, Tag } from 'antd'
 import { SorterResult } from 'antd/es/table/interface'
 import { reportsApi } from '../../service/ReportService'
+import { useAppSelector } from '../../hooks/redux'
 
 
 export const ReportsTable: React.FC = () => {
     type ColumnsType<T extends object = object> = TableProps<T>['columns'];
     type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
-
+    const { systemsFilter, dateFilter, applied } = useAppSelector((state) => state.filterIssuesReducer)
     const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
 
     interface TableParams {
@@ -32,8 +33,8 @@ export const ReportsTable: React.FC = () => {
     });
     const columns: ColumnsType<IReportMessage> = [
         {
-            title: 'Id в КИС "Аудит"',
-            dataIndex: 'idKIS',
+            title: 'Id в системе',
+            dataIndex: 'idEvent',
             sorter: true,
             width: '20%',
         },
@@ -57,11 +58,11 @@ export const ReportsTable: React.FC = () => {
             title: 'Теги',
             dataIndex: 'event',
             sorter: true,
-            render: (_, {event}) => (
-                <>  
+            render: (_, { event }) => (
+                <>
                     <Tag color={'red'} >
-                                {event.toUpperCase()}
-                            </Tag>
+                        {event.toUpperCase()}
+                    </Tag>
                 </>
             ),
             width: '20%',
@@ -93,7 +94,26 @@ export const ReportsTable: React.FC = () => {
             <Table<IReportMessage>
                 columns={columns}
                 rowKey={(record) => record.id}
-                dataSource={reports}
+                dataSource={
+                    applied ?
+                        reports?.
+                            filter((report) => {
+                                if (systemsFilter.length) {
+                                    return (systemsFilter.includes(report.appInfo.appName))
+                                }
+                                return true
+
+                            })
+                            .filter((report) => {
+                                if (dateFilter.startDate || dateFilter.endDate) {
+                                    const start = (new Date(dateFilter.startDate || '1988-03-28')).getTime()
+                                    const end = (new Date(dateFilter.endDate || '2999-03-01')).getTime()
+                                    const date = (new Date(report.dateApp)).getTime()
+                                    return (start <= date && date <= end)
+                                }
+                                return true
+                            })
+                        : reports}
                 pagination={tableParams.pagination}
                 loading={isLoading}
                 onChange={handleTableChange}
