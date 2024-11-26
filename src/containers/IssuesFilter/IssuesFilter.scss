@@ -3,16 +3,27 @@
 .IssuesFilter {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-auto-rows: min-content;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     padding: 10px;
-border: 1px solid $mainBlue;
-border-radius: 5px;
+    
     & .addBlock{
         svg {
             cursor: pointer;
         }
+    }
+    & .filterItem {
+        display: flex;
+        padding:4px;
+    }
+    & .filterName {
+        display: block;
+        width: 300px;
+    }
+
+    & .controllBox button{
+        margin: 6px;
     }
 
 }

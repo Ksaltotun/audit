@@ -148,7 +148,7 @@ export const IssuesFilter: React.FC = () => {
                         </div>
                     </Modal>
             }
-            <div className="filterHead"> FILTER</div>
+            <div className="filterHead">Блок фильтра</div>
             <div className="addBlock">
 
                 <Dropdown menu={{ items }}>
@@ -191,7 +191,7 @@ export const IssuesFilter: React.FC = () => {
                 {
                     systemsFilter.map(item => <>
                         <div className='filterItem'>
-                            <span>{item}</span>
+                            <span className='filterName'>{item}</span>
                             <Button color="danger" variant="solid" onClick={() => {
                                 const result = systemsFilter.filter(i => i !== item)
                                 setSystemsFilter(result)
@@ -204,7 +204,7 @@ export const IssuesFilter: React.FC = () => {
                 }
                 {
                     dateFilter.startDate || dateFilter.endDate ? <div className='filterItem'>
-                        <span>{dateFilter.startDate + " - " + dateFilter.endDate}</span>
+                        <span className='filterName'>{dateFilter.startDate + " - " + dateFilter.endDate}</span>
                         <Button color="danger" variant="solid" onClick={() => {
                             setChosenDates({
                                 startDate: '',
@@ -224,13 +224,28 @@ export const IssuesFilter: React.FC = () => {
             <div className="controllBox">
                 {
                     systemsFilter.length || dateFilter.endDate || dateFilter.startDate ?
-                        <Button color="primary" variant="solid"
+                    <>
+                    <Button color="primary" variant="solid"
                         onClick={()=>{
                             dispatch(applyFilter(true))
                         }}
                         >
                             Применить
                         </Button>
+                        <Button color="primary" variant="solid"
+                        onClick={()=>{
+                            dispatch(addDateFilter({
+                                startDate: '',
+                                endDate: ''
+                            }))
+                            dispatch(addSystemFilter([]))
+                            dispatch(applyFilter(false))
+                        }}
+                        >
+                           Сбросить
+                        </Button>
+                    </>
+                        
                         : null
                 }
             </div>

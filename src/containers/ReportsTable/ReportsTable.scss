@@ -2,7 +2,18 @@
 
 .ReportsTable {
     margin: 2px;
-   padding: 4px;
-   border: 1px solid rgb(38, 34, 34);
-   border-radius: 4px;
+    padding: 4px;
+    border: 1px solid rgb(38, 34, 34);
+    border-radius: 4px;
+
+    & tr {
+        cursor: pointer;
+    }
+
+
 }
+
+.systemTree{
+    height: 200px;
+}
+

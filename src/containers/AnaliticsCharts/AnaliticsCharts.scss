@@ -15,6 +15,9 @@
 
     .div2 {
         grid-area: 1 / 4 / 5 / 7;
+        & h5 {
+            position:absolute;
+        }
     }
 
     .div3 {

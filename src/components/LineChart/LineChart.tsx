@@ -22,6 +22,7 @@ export const LineChart = ({ props }: IProps) => {
   }))
   console.log(props)
   return (
+    <>
     <ResponsiveLineCanvas
       data={data}
       margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
@@ -40,7 +41,7 @@ export const LineChart = ({ props }: IProps) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "по месяцам",
+        legend: "За аналогичный период по месяцам",
         legendOffset: 36,
         legendPosition: "middle",
         truncateTickAt: 0,
@@ -88,5 +89,6 @@ export const LineChart = ({ props }: IProps) => {
         },
       ]}
     />
+    </>
   );
 };

@@ -75,14 +75,17 @@ console.log(props)
     return (
         <div className='AnaliticsCharts' >
             <div className="div1">
+                
                 <LineChart props={perYear}/>
 
             </div>
             <div className="div2">
-                <PieChart props={perSystems} />
+              <h5>Распределение репортовпо системам</h5>
+                <PieChart props={perSystems}  />
 
             </div>
             <div className="div3">
+
                 <BarChart props={perSystems} />
             </div>
 

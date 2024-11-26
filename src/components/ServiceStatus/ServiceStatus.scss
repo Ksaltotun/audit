@@ -1,54 +1,75 @@
 @import '../../colors.scss';
 
 .ServiceStatus {
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 48px;
     height: 48px;
 
-    svg #pcScreen{
+    & svg {
+        min-height: 48px;
+    }
+
+    svg #pcScreen {
+        width: 40px;
+        height: 40px;
+
         &[data-status="200"] {
             fill: rgb(8, 244, 8);
             animation: blinkG 6s ease;
             animation-iteration-count: infinite;
+
             @keyframes blinkG {
                 from {
-                    fill:rgb(8, 244, 8); 
+                    fill: rgb(8, 244, 8);
                 }
-                50%{
-                    fill:rgba(33, 67, 35, 0.6)
+
+                50% {
+                    fill: rgba(33, 67, 35, 0.6)
                 }
+
                 to {
                     fill: rgb(8, 244, 8);
                 }
             }
         }
+
         &[data-status="400"] {
             fill: rgb(231, 231, 13);
             animation: blinkY 4s ease;
             animation-iteration-count: infinite;
+
             @keyframes blinkY {
                 from {
-                    fill:rgb(231, 231, 13); 
+                    fill: rgb(231, 231, 13);
                 }
-                50%{
-                    fill:rgba(33, 67, 35, 0.6)
+
+                50% {
+                    fill: rgba(33, 67, 35, 0.6)
                 }
+
                 to {
                     fill: rgb(231, 231, 13);
                 }
             }
         }
+
         &[data-status="500"] {
             fill: rgb(255, 0, 0);
             animation: blinkR 1s ease;
             animation-iteration-count: infinite;
+
             @keyframes blinkR {
                 from {
-                    fill:rgb(255, 0, 0); 
+                    fill: rgb(255, 0, 0);
                 }
-                50%{
-                    fill:rgba(33, 67, 35, 0.6)
+
+                50% {
+                    fill: rgba(33, 67, 35, 0.6)
                 }
+
                 to {
                     fill: rgb(255, 0, 0);
                 }
@@ -56,5 +77,5 @@
         }
     }
 
-    
+
 }

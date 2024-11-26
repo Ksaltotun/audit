@@ -287,6 +287,7 @@ export const ServiceStatus = (props) => {
                     </g>
                 </g>
             </svg>
+            <h4>{props.dataStatus.name}</h4>
         </div>
     )
 }

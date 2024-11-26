@@ -40,7 +40,6 @@ export const BarChart: React.FC<IProps> = ({props}:IProps) => {
         reverse={false}
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
-       
         colorBy="id"
         borderWidth={0}
         borderRadius={0}
@@ -66,7 +65,7 @@ export const BarChart: React.FC<IProps> = ({props}:IProps) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'system',
+            legend: 'Распределение тегов по системам',
             legendPosition: 'middle',
             legendOffset: 36,
             truncateTickAt: 0

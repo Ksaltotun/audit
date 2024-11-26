@@ -7,10 +7,13 @@ import './ReportsTable.scss'
 import { useState } from 'react'
 
 import { IReportMessage } from '../../type'
-import { GetProp, Table, TableProps, Tag } from 'antd'
+import { Divider, GetProp, Modal, Table, TableProps, Tag, Timeline } from 'antd'
 import { SorterResult } from 'antd/es/table/interface'
 import { reportsApi } from '../../service/ReportService'
 import { useAppSelector } from '../../hooks/redux'
+import { ResponsiveTreeCanvas } from '@nivo/tree'
+import { InputNode, ResponsiveNetwork, ResponsiveNetworkCanvas } from '@nivo/network'
+import { Spinner } from '../../components/Spinner/Spinner'
 
 
 export const ReportsTable: React.FC = () => {
@@ -18,6 +21,9 @@ export const ReportsTable: React.FC = () => {
     type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
     const { systemsFilter, dateFilter, applied } = useAppSelector((state) => state.filterIssuesReducer)
     const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
+    const [modal1Open, setModal1Open] = useState<any>(false);
+
+
 
     interface TableParams {
         pagination?: TablePaginationConfig;
@@ -35,7 +41,7 @@ export const ReportsTable: React.FC = () => {
         {
             title: 'Id в системе',
             dataIndex: 'idEvent',
-            sorter: true,
+            sorter: false,
             width: '20%',
         },
         {
@@ -45,19 +51,22 @@ export const ReportsTable: React.FC = () => {
                 const timeFormat: Intl.DateTimeFormatOptions = { month: 'numeric', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false, timeZoneName: 'short', timeZone: 'UTC' }
                 return (new Date(date)).toLocaleString("ru", timeFormat)
             },
-            sorter: true,
+            sorter: (a, b) => {
+                console.log((new Date(a.dateApp)).getTime() - (new Date(b.dateApp)).getTime())
+                return (new Date(a.dateApp)).getTime() - (new Date(b.dateApp)).getTime()
+            },
             width: '20%',
         },
         {
             title: 'Система',
             dataIndex: ['appInfo', 'appName'],
-            sorter: true,
+            sorter: (a, b) => (a.appInfo.appName >= b.appInfo.appName ? 1 : -1),
             width: '20%',
         },
         {
             title: 'Теги',
             dataIndex: 'event',
-            sorter: true,
+            sorter: false,
             render: (_, { event }) => (
                 <>
                     <Tag color={'red'} >
@@ -70,7 +79,7 @@ export const ReportsTable: React.FC = () => {
         {
             title: 'Сообщение',
             dataIndex: 'message',
-            sorter: true,
+            sorter: false,
             width: '20%',
         },
     ];
@@ -82,43 +91,87 @@ export const ReportsTable: React.FC = () => {
             sortField: Array.isArray(sorter) ? undefined : sorter.field,
         });
 
-        // `dataSource` is useless since `pageSize` changed
-        if (pagination.pageSize !== tableParams.pagination?.pageSize) {
+        // // `dataSource` is useless since `pageSize` changed
+        // if (pagination.pageSize !== tableParams.pagination?.pageSize) {
 
-        }
+        // }
     };
 
+    return isLoading? <Spinner/> : <div className='ReportsTable' >
+    <Modal
+        title={modal1Open?.appInfo?.appName}
+        centered
+        open={Boolean(modal1Open)}
+        onOk={() => {
+            setModal1Open(false)
+        }}
+        onCancel={() => {
+            console.log(modal1Open)
+            setModal1Open(false)
+        }}
+    >
+        <div className='reportDetail'>
+            <dl>
+                <dt>Дата в системе</dt>
+                <dd>{modal1Open.dateApp}</dd>
 
-    return (
-        <div className='ReportsTable' >
-            <Table<IReportMessage>
-                columns={columns}
-                rowKey={(record) => record.id}
-                dataSource={
-                    applied ?
-                        reports?.
-                            filter((report) => {
-                                if (systemsFilter.length) {
-                                    return (systemsFilter.includes(report.appInfo.appName))
-                                }
-                                return true
+                <dt>Дата в КИС "Аудит"</dt>
+                <dd>{modal1Open.dateKis}</dd>
 
-                            })
-                            .filter((report) => {
-                                if (dateFilter.startDate || dateFilter.endDate) {
-                                    const start = (new Date(dateFilter.startDate || '1988-03-28')).getTime()
-                                    const end = (new Date(dateFilter.endDate || '2999-03-01')).getTime()
-                                    const date = (new Date(report.dateApp)).getTime()
-                                    return (start <= date && date <= end)
-                                }
-                                return true
-                            })
-                        : reports}
-                pagination={tableParams.pagination}
-                loading={isLoading}
-                onChange={handleTableChange}
-            />
+                <dt>Тип события</dt>
+                <dd>{modal1Open.event}</dd>
+                <dt>Сообщение от системы</dt>
+                <dd>{modal1Open.message}</dd>
+            </dl>
+            <Divider />
+            <h3>Детали и подсисстемы</h3>
+            <div className='systemTree'>
+                <Timeline
+                    items={[...
+                        (modal1Open.appInfo?.systemDetail || '').split(".").map((item: string) => {
+                            return { 'children': item }
+                        })
+                    ]}
+                />
+            </div>
         </div>
-    )
+
+    </Modal>
+    <Table<IReportMessage>
+        onRow={(record, rowIndex) => {
+            return {
+                onClick: (event) => {
+                    setModal1Open(record)
+                }, // click row
+            };
+        }}
+        columns={columns}
+        rowKey={(record) => record.id}
+        dataSource={
+            applied ?
+                reports?.
+                    filter((report) => {
+                        if (systemsFilter.length) {
+                            return (systemsFilter.includes(report.appInfo.appName))
+                        }
+                        return true
+
+                    })
+                    .filter((report) => {
+                        if (dateFilter.startDate || dateFilter.endDate) {
+                            const start = (new Date(dateFilter.startDate || '1988-03-28')).getTime()
+                            const end = (new Date(dateFilter.endDate || '2999-03-01')).getTime()
+                            const date = (new Date(report.dateApp)).getTime()
+                            return (start <= date && date <= end)
+                        }
+                        return true
+                    })
+                : reports}
+        pagination={tableParams.pagination}
+        loading={isLoading}
+        onChange={handleTableChange}
+
+    />
+</div>
 }
 
