@@ -15,12 +15,12 @@ import { Spinner } from '../../components/Spinner/Spinner'
 import { setLoading } from '../../redux/reducers/ActionCreators'
 
 
-export const ReportsTable: React.FC = () => {
+export const ReportsTable: React.FC<any> = (props) => {
+    const {reports, isLoading} = props
     type ColumnsType<T extends object = object> = TableProps<T>['columns'];
     type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
     const { systemsFilter, dateFilter, applied } = useAppSelector((state) => state.filterIssuesReducer)
-    // const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
-    const {reports, isLoading} = useAppSelector((state) => state.reportsReducer)
+   
     const [modal1Open, setModal1Open] = useState<any>(false);
     const dispatch = useAppDispatch()
     
@@ -159,14 +159,14 @@ export const ReportsTable: React.FC = () => {
         dataSource={
             applied ?
                 reports?.
-                    filter((report) => {
+                    filter((report: any) => {
                         if (systemsFilter.length) {
                             return (systemsFilter.includes(report.appInfo.appName))
                         }
                         return true
 
                     })
-                    .filter((report) => {
+                    .filter((report: any) => {
                         if (dateFilter.startDate || dateFilter.endDate) {
                             const start = (new Date(dateFilter.startDate || '1988-03-28')).getTime()
                             const end = (new Date(dateFilter.endDate || '2999-03-01')).getTime()

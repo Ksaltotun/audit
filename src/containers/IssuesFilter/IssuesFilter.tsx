@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import './IssuesFilter.scss'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { Button, DatePicker, Dropdown, GetProps, MenuProps, Modal, Select, Space } from 'antd'
+import { Button, DatePicker, Dropdown, GetProps, MenuProps, Modal, Select, Space, TreeSelect } from 'antd'
 import { addDateFilter, addSystemFilter, applyFilter } from '../../redux/reducers/ActionCreators'
 import { useState } from 'react'
 import { DownOutlined } from '@ant-design/icons'
@@ -10,8 +10,8 @@ import { IDateFilter } from '../../type'
 
 const { RangePicker } = DatePicker;
 
-export const IssuesFilter: React.FC = () => {
-
+export const IssuesFilter: React.FC<any> = (props) => {
+    const {reports, isLoading} = props
     const { systemsFilter, dateFilter } = useAppSelector((state) => state.filterIssuesReducer)
     const dispatch = useAppDispatch()
 
@@ -79,6 +79,66 @@ export const IssuesFilter: React.FC = () => {
         return result;
     };
 
+    const [value, setValue] = useState(['0-0-0']);
+
+  const onChange = (newValue: string[]) => {
+    console.log('onChange ', newValue);
+    setValue(newValue);
+  };
+
+  const treeData = [
+    {
+      title: 'Node1',
+      value: '0-0',
+      key: '0-0',
+      children: [
+        {
+          title: 'Child Node1',
+          value: '0-0-0',
+          key: '0-0-0',
+        },
+      ],
+    },
+    {
+      title: 'Node2',
+      value: '0-1',
+      key: '0-1',
+      children: [
+        {
+          title: 'Child Node3',
+          value: '0-1-0',
+          key: '0-1-0',
+        },
+        {
+          title: 'Child Node4',
+          value: '0-1-1',
+          key: '0-1-1',
+        },
+        {
+          title: 'Child Node5',
+          value: '0-1-2',
+          key: '0-1-2',
+        },
+      ],
+    },
+  ];
+
+ // repor
+
+
+  const { SHOW_PARENT } = TreeSelect;
+    const tProps = {
+        treeData,
+        value,
+        onChange,
+        treeCheckable: true,
+        showCheckedStrategy: SHOW_PARENT,
+        placeholder: 'Please select',
+        style: {
+          width: '100%',
+        },
+      };
+
     return (
         <div className='IssuesFilter'>
             {
@@ -98,18 +158,7 @@ export const IssuesFilter: React.FC = () => {
                         }}
                     >
                         <div className='filterForm'>
-                            <Select
-                                mode="multiple"
-                                style={{ width: '100%' }}
-                                placeholder="выберите системы"
-                                defaultValue={['KIS']}
-                                value={choosenSystemsFilter}
-                                onChange={handleChange}
-                                options={options}
-                                optionRender={(option: any) => {
-                                    return <Space>{option.data.desc}</Space>
-                                }}
-                            />
+                        <TreeSelect {...tProps} />
                         </div>
                     </Modal>
                     : <Modal
