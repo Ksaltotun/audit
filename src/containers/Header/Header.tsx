@@ -7,8 +7,7 @@ import { Button } from '../../components/Button/Button'
 
 export const Header: React.FC = () => {
 
-    const navigate = useNavigate()
-    const dispatch = useAppDispatch()
+
     return (
         <div className='Header'>
             <HeaderInfo />

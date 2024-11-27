@@ -7,10 +7,7 @@ import './AnaliticsCharts.scss'
 import { useState } from 'react'
 
 import { IReportMessage } from '../../type'
-import { GetProp, Table, TableProps, Tag } from 'antd'
-import { SorterResult } from 'antd/es/table/interface'
-import { reportsApi } from '../../service/ReportService'
-import { TagsChart } from '../../components/TagsChart/TagsChart'
+
 import { PieChart } from '../../components/PieChart/PieChart'
 import { LineChart } from '../../components/LineChart/LineChart'
 import { BarChart } from '../../components/BarChart/BarChart'
@@ -25,16 +22,6 @@ export const AnaliticsCharts: React.FC<IProps> = ({ props }: IProps) => {
 console.log(props)
     const perSystems = new Map()
     const perYear = new Map()
-
-
-
-   
-    // "id": "japan",
-    //   data: [
-    //     {
-    //       x: "plane",
-    //       y: 204,
-    //     },
 
     props.forEach(rep => {
         const name = rep.appInfo.appName
@@ -80,7 +67,7 @@ console.log(props)
 
             </div>
             <div className="div2">
-              <h5>Распределение репортовпо системам</h5>
+              <h5>Распределение репортов по системам</h5>
                 <PieChart props={perSystems}  />
 
             </div>

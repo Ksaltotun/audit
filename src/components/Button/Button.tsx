@@ -11,8 +11,8 @@ export const Button: React.FC<IButtonProps> = (props: IButtonProps) => {
     const dispatch = useAppDispatch()
     return (
         <div className='Button' onClick={()=>{
-            dispatch(routePage('admin'))
-            navigate(props.routeTo ?? '/')
+            //dispatch(routePage('/'))
+            navigate('/')
         }} data-type={props.type}>
             <span>{props.text}</span>
         </div>

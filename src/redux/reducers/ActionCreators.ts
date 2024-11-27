@@ -1,9 +1,10 @@
 import { AppDispatch } from "../store"
 
 import { leftMenuSlice } from "./LeftMenuSlice"
-import { IDateFilter, RoutesType } from "../../type"
+import { IDateFilter, IReportMessage, RoutesType } from "../../type"
 import { modalWindowSlice } from "./ModalWindowSlice"
 import { filterIssuesSlice } from "./FilterIssuesSlice"
+import { reportSlice } from "./DataReducer"
 
 export const routePage = (payload: RoutesType) => (dispatch: AppDispatch) => {
     {
@@ -31,5 +32,17 @@ export const addDateFilter = (payload: IDateFilter) => (dispatch: AppDispatch) =
 export const applyFilter = (payload: boolean) => (dispatch: AppDispatch) => {
     {
         dispatch(filterIssuesSlice.actions.applyFilter(payload))
+    }
+}
+
+export const setReports = (payload: any[]) => (dispatch: AppDispatch) => {
+    {
+        dispatch(reportSlice.actions.setReports(payload))
+    }
+}
+
+export const setLoading = (payload: boolean) => (dispatch: AppDispatch) => {
+    {
+        dispatch(reportSlice.actions.setLoading(payload))
     }
 }

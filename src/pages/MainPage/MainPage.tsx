@@ -12,19 +12,26 @@ import { NavButton } from '../../components/NavButton/NavButton'
 import { IReportMessage, IUser } from '../../type'
 import { reportsApi } from '../../service/ReportService'
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow'
+import data from '../../db.json'
+import { setLoading, setReports } from '../../redux/reducers/ActionCreators'
 
 
 
 export const MainPage: React.FC = () => {
 
     const dispatch = useAppDispatch()
-    //const { data: posts, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
+    const {reports} = useAppSelector((state) => state.reportsReducer)
+    
+    useEffect(()=>{
+        setTimeout(()=>{
+            const datas:any[] = data.reportMessages
+            console.log(data.reportMessages)
+            dispatch(setLoading(false))
+            dispatch(setReports(datas))
+        }, 1700)
 
-    // const handdleCreate = async () => {
-    //     const title = prompt('vvedite')
-    //     await createPost({ title, body: title } as IPost)
-    // }
-
+        setTimeout(()=>{dispatch(setLoading(true))}, 10)
+    }, [])
     return (
         <>
         <ModalWindow/>
@@ -33,7 +40,7 @@ export const MainPage: React.FC = () => {
             <Header />
         </header>
         <aside className='leftMenuBox'>
-            <NavButton type='login' text={'Админка'} routeTo={'admin'} />
+            {/* <NavButton type='login' text={'Админка'} routeTo={'admin'} /> */}
             <NavButton type='login' text={'Обзор'} routeTo={'observe'} />
             <NavButton type='login' text={'Аналитика'} routeTo={'analitics'} />
             <NavButton type='login' text={'Отчеты'} routeTo={'issues'} />
@@ -42,9 +49,9 @@ export const MainPage: React.FC = () => {
         <section className='contentBox'>
             <Outlet />
         </section>
-        <footer className='footerBox'>
-            <Footer />
-        </footer>
+                {/* <footer className='footerBox'>
+                    <Footer />
+                </footer> */}
     </section></>
         
     )

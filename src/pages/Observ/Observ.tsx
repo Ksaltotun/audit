@@ -9,9 +9,9 @@ export const Observ: React.FC = () => {
 
     return (
         <section className='Observ'>
-            <h2>Обзор посупления рапортов от систем</h2>
-            <Observation/>
-            </section>
+            <h2>Обзор поступления рапортов от систем</h2>
+            <Observation />
+        </section>
     )
 }
 

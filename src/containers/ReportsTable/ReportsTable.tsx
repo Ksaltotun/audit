@@ -4,26 +4,35 @@ import { Button } from '../../components/Button/Button'
 import { Input } from '../../components/Input/Input'
 
 import './ReportsTable.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { IReportMessage } from '../../type'
 import { Divider, GetProp, Modal, Table, TableProps, Tag, Timeline } from 'antd'
 import { SorterResult } from 'antd/es/table/interface'
 import { reportsApi } from '../../service/ReportService'
-import { useAppSelector } from '../../hooks/redux'
-import { ResponsiveTreeCanvas } from '@nivo/tree'
-import { InputNode, ResponsiveNetwork, ResponsiveNetworkCanvas } from '@nivo/network'
+import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { Spinner } from '../../components/Spinner/Spinner'
+import { setLoading } from '../../redux/reducers/ActionCreators'
 
 
 export const ReportsTable: React.FC = () => {
     type ColumnsType<T extends object = object> = TableProps<T>['columns'];
     type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
     const { systemsFilter, dateFilter, applied } = useAppSelector((state) => state.filterIssuesReducer)
-    const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
+    // const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
+    const {reports, isLoading} = useAppSelector((state) => state.reportsReducer)
     const [modal1Open, setModal1Open] = useState<any>(false);
+    const dispatch = useAppDispatch()
+    
+    useEffect(()=>{
+        setTimeout(()=>{
+            
+            dispatch(setLoading(false))
+            
+        }, 1200)
 
-
+        setTimeout(()=>{dispatch(setLoading(true))}, 10)
+    }, [])
 
     interface TableParams {
         pagination?: TablePaginationConfig;
@@ -97,7 +106,7 @@ export const ReportsTable: React.FC = () => {
         // }
     };
 
-    return isLoading? <Spinner/> : <div className='ReportsTable' >
+    return isLoading ? <Spinner/> : <div className='ReportsTable' >
     <Modal
         title={modal1Open?.appInfo?.appName}
         centered
@@ -168,7 +177,7 @@ export const ReportsTable: React.FC = () => {
                     })
                 : reports}
         pagination={tableParams.pagination}
-        loading={isLoading}
+        loading={false}
         onChange={handleTableChange}
 
     />

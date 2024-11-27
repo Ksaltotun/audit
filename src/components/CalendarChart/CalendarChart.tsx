@@ -4,11 +4,13 @@ import { ResponsiveCalendar, ResponsiveCalendarCanvas } from '@nivo/calendar'
 import { MONTHS } from '../../utils'
 import './CalendarChart.scss'
 import { reportsApi } from '../../service/ReportService'
+import { useAppSelector } from '../../hooks/redux'
 
 
 
 export const CalendarChart: React.FC = () => {
-  const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
+  //const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
+  const {reports} = useAppSelector((state) => state.reportsReducer)
     const perDay = new Map<string, any>()
    //const timeFormat: Intl.DateTimeFormatOptions = {year: 'numeric', month: 'numeric', day: '2-digit'}
   const data:any = []

@@ -4,12 +4,14 @@ import leftMenuReducer from "./reducers/LeftMenuSlice";
 import ModalWindowReducer from "./reducers/ModalWindowSlice";
 import filterIssuesReducer from "./reducers/FilterIssuesSlice";
 import { filterIssuesSlice } from "./reducers/FilterIssuesSlice";
+import reportsReducer from "./reducers/DataReducer";
 
 
 const rootReducer = combineReducers({
     leftMenuReducer,
     ModalWindowReducer,
     filterIssuesReducer, 
+    reportsReducer,
     [reportsApi.reducerPath]: reportsApi.reducer
 })
 
