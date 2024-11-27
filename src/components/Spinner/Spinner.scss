@@ -11,17 +11,26 @@
     width: 100vw;
     background-color: rgba(69, 69, 204, 0.395);
 
-    & svg {
+    .cube {
         z-index: 2;
         width: 200px;
         height: 200px;
-        animation: spin 4s linear infinite;
+        animation: 3s linear 0s normal none infinite running rot;
+        transform-origin: center center;
+        display: flex;
+        justify-content: center;
+    align-items: center;
     }
 
-    @keyframes spin {
-        100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    @keyframes rot {
+        from {
+            
+          transform: rotate(0deg);
         }
-    }
+      
+        to {
+            
+          transform: rotate(360deg);
+        }
+      }
 }
