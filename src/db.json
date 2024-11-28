@@ -43,7 +43,7 @@
         "systemDetail": "КИС.Паспорт ФЛ.Просмотр"
       },
       "user": {
-        "userID": "admin123@cis.by",
+        "userID": "baf205c3-ed4b-49c1-119e-193975995d06",
         "userName": "Мария Семенова",
         "userRole": "user"
       },
@@ -54,7 +54,7 @@
     {
       "dateApp": "2024-11-01T09:12:16.386Z",
       "idEvent": "67455aa888345a8f0e4ba112",
-      "event": " systemAction",
+      "event": "systemAction",
       "appInfo": {
         "appName": "BDN",
         "systemDetail": "БДН.Списки граждан.Оплата ПСМ239.Отправка в ЕРИП"
@@ -87,7 +87,7 @@
     },
     {
       "dateApp": "2024-11-25T09:12:16.386Z",
-      "idEvent": 5,
+      "idEvent": "67455aa836745a7f2e4ba112",
       "event": "systemError",
       "appInfo": {
         "appName": "BDN",
