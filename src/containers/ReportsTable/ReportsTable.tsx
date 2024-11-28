@@ -73,7 +73,7 @@ export const ReportsTable: React.FC = () => {
             width: '20%',
         },
         {
-            title: 'Теги',
+            title: 'Тип события',
             dataIndex: 'event',
             sorter: false,
             render: (_, { event }) => (

@@ -44,7 +44,7 @@ export const MainPage: React.FC = () => {
             <NavButton type='login' text={'Обзор'} routeTo={'observe'} />
             <NavButton type='login' text={'Аналитика'} routeTo={'analitics'} />
             <NavButton type='login' text={'Отчеты'} routeTo={'issues'} />
-            <NavButton type='login' text={'Схема'} routeTo={'schema'} />
+            {/* <NavButton type='login' text={'Схема'} routeTo={'schema'} /> */}
         </aside>
         <section className='contentBox'>
             <Outlet />

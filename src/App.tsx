@@ -21,7 +21,7 @@ function App() {
           <Route path="analitics" element={<Analitics />} />
           <Route path="observe" element={<Observ />} />
           <Route path="issues" element={<Issues />} />
-          <Route path="schema" element={<Schema />} />
+          {/* <Route path="schema" element={<Schema />} /> */}
         </Route>
 
       </Routes>

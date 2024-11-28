@@ -10,8 +10,9 @@ interface IProps {
 export const PieChart: React.FC<IProps> = ({props}: IProps) => {
     
    const data: any[] = []
-
+console.log(props)
   props.forEach((v, k)=>{
+    console.log(k, SYSTEMS_COLOR_SETTINGS.get(k))
     data.push({
       "id": k,
       "label": SYSTEMS_COLOR_SETTINGS.get(k).label,

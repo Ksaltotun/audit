@@ -11,5 +11,9 @@ export const SYSTEMS_COLOR_SETTINGS = new Map<string, any>([
   ["ASU", {
     label: "АСУ 'Занятость'",
     color: "blue"
+}],
+["BDN", {
+  label: "БДН",
+  color: "blue"
 }]
 ])
