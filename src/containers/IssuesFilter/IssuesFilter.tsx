@@ -11,7 +11,7 @@ import { IDateFilter } from '../../type'
 const { RangePicker } = DatePicker;
 
 export const IssuesFilter: React.FC<any> = (props) => {
-    const {reports, isLoading} = props
+    const { reports, isLoading } = props
     const { systemsFilter, dateFilter } = useAppSelector((state) => state.filterIssuesReducer)
     const dispatch = useAppDispatch()
 
@@ -53,23 +53,23 @@ export const IssuesFilter: React.FC<any> = (props) => {
         }
     ];
 
-    const options = [
-        {
-            label: 'ASU',
-            value: 'ASU',
-            desc: 'АСУ"Занятость"',
-        },
-        {
-            label: 'GSZ',
-            value: 'GSZ',
-            desc: 'ГСЗ',
-        },
-        {
-            label: 'KIS',
-            value: 'KIS',
-            desc: 'КИС"Управление"',
-        },
-    ];
+    // const options = [
+    //     {
+    //         label: 'ASU',
+    //         value: 'ASU',
+    //         desc: 'АСУ"Занятость"',
+    //     },
+    //     {
+    //         label: 'GSZ',
+    //         value: 'GSZ',
+    //         desc: 'ГСЗ',
+    //     },
+    //     {
+    //         label: 'KIS',
+    //         value: 'KIS',
+    //         desc: 'КИС"Управление"',
+    //     },
+    // ];
 
     const range = (start: number, end: number) => {
         const result = [];
@@ -81,52 +81,74 @@ export const IssuesFilter: React.FC<any> = (props) => {
 
     const [value, setValue] = useState(['0-0-0']);
 
-  const onChange = (newValue: string[]) => {
-    console.log('onChange ', newValue);
-    setValue(newValue);
-  };
+    const onChange = (newValue: string[]) => {
+        console.log('onChange ', newValue);
+        setValue(newValue);
+    };
 
-  const treeData = [
-    {
-      title: 'Node1',
-      value: '0-0',
-      key: '0-0',
-      children: [
+    const treeData = [
         {
-          title: 'Child Node1',
-          value: '0-0-0',
-          key: '0-0-0',
-        },
-      ],
-    },
-    {
-      title: 'Node2',
-      value: '0-1',
-      key: '0-1',
-      children: [
-        {
-          title: 'Child Node3',
-          value: '0-1-0',
-          key: '0-1-0',
+            title: 'Node1',
+            value: '0-0',
+            key: '0-0',
+            children: [
+                {
+                    title: 'Child Node1',
+                    value: '0-0-0',
+                    key: '0-0-0',
+                },
+            ],
         },
         {
-          title: 'Child Node4',
-          value: '0-1-1',
-          key: '0-1-1',
+            title: 'Node2',
+            value: '0-1',
+            key: '0-1',
+            children: [
+                {
+                    title: 'Child Node3',
+                    value: '0-1-0',
+                    key: '0-1-0',
+                },
+                {
+                    title: 'Child Node4',
+                    value: '0-1-1',
+                    key: '0-1-1',
+                },
+                {
+                    title: 'Child Node5',
+                    value: '0-1-2',
+                    key: '0-1-2',
+                },
+            ],
         },
-        {
-          title: 'Child Node5',
-          value: '0-1-2',
-          key: '0-1-2',
-        },
-      ],
-    },
-  ];
+    ];
 
- // repor
+    const options = props.appInfo.systemDetail.split(".").reduce((accum: any, current: any, index: any, array:[]) => {
+        if (index === 0) {
+            accum.push({
+                title: current,
+                value: '0-0',
+                key: '0-0',
+                children: []
+            })
+            return accum
+        }
+        if (index === array.length - 1) {
+            accum[index].value += '-O'
+            accum[index].key += '-O'
+            accum[index].children = []
+            accum[index].title = current
+            return accum
+        } 
+        accum[index].value += '-O-'
+            accum[index].key += '-O-'
+            accum[index].changed = []
+            accum[index].title = current
+            return accum
+}, [])
 
 
-  const { SHOW_PARENT } = TreeSelect;
+    const { SHOW_PARENT } = TreeSelect;
     const tProps = {
         treeData,
         value,
@@ -135,9 +157,9 @@ export const IssuesFilter: React.FC<any> = (props) => {
         showCheckedStrategy: SHOW_PARENT,
         placeholder: 'Please select',
         style: {
-          width: '100%',
+            width: '100%',
         },
-      };
+    };
 
     return (
         <div className='IssuesFilter'>
@@ -158,7 +180,7 @@ export const IssuesFilter: React.FC<any> = (props) => {
                         }}
                     >
                         <div className='filterForm'>
-                        <TreeSelect {...tProps} />
+                            <TreeSelect {...tProps} />
                         </div>
                     </Modal>
                     : <Modal
@@ -166,7 +188,7 @@ export const IssuesFilter: React.FC<any> = (props) => {
                         style={{ top: 20 }}
                         open={modal1Open}
                         onOk={() => {
-                            dispatch(addDateFilter({...chosenDates}))
+                            dispatch(addDateFilter({ ...chosenDates }))
                             setModal1Open(false)
                         }}
                         onCancel={() => {
@@ -183,9 +205,9 @@ export const IssuesFilter: React.FC<any> = (props) => {
                                             startDate: dateString[0],
                                             endDate: dateString[1]
                                         }
-                                        setChosenDates({...res})
+                                        setChosenDates({ ...res })
 
-                                        
+
                                     }}
                                     showTime={{
                                         hideDisabledOptions: true,
@@ -273,28 +295,28 @@ export const IssuesFilter: React.FC<any> = (props) => {
             <div className="controllBox">
                 {
                     systemsFilter.length || dateFilter.endDate || dateFilter.startDate ?
-                    <>
-                    <Button color="primary" variant="solid"
-                        onClick={()=>{
-                            dispatch(applyFilter(true))
-                        }}
-                        >
-                            Применить
-                        </Button>
-                        <Button color="primary" variant="solid"
-                        onClick={()=>{
-                            dispatch(addDateFilter({
-                                startDate: '',
-                                endDate: ''
-                            }))
-                            dispatch(addSystemFilter([]))
-                            dispatch(applyFilter(false))
-                        }}
-                        >
-                           Сбросить
-                        </Button>
-                    </>
-                        
+                        <>
+                            <Button color="primary" variant="solid"
+                                onClick={() => {
+                                    dispatch(applyFilter(true))
+                                }}
+                            >
+                                Применить
+                            </Button>
+                            <Button color="primary" variant="solid"
+                                onClick={() => {
+                                    dispatch(addDateFilter({
+                                        startDate: '',
+                                        endDate: ''
+                                    }))
+                                    dispatch(addSystemFilter([]))
+                                    dispatch(applyFilter(false))
+                                }}
+                            >
+                                Сбросить
+                            </Button>
+                        </>
+
                         : null
                 }
             </div>

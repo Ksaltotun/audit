@@ -17,7 +17,7 @@ function App() {
         <Route element={<MainPage />}>
           {/* <Route index element={<AdminPage />} /> */}
           {/* <Route path="*" element={<AdminPage />} /> */}
-          <Route index element={<Analitics />} />
+          <Route index element={<Observ />} />
           <Route path="analitics" element={<Analitics />} />
           <Route path="observe" element={<Observ />} />
           <Route path="issues" element={<Issues />} />
