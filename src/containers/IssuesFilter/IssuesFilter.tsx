@@ -69,6 +69,11 @@ export const IssuesFilter: React.FC = () => {
             value: 'KIS',
             desc: 'КИС"Управление"',
         },
+        {
+            label: 'BDN',
+            value: 'BDN',
+            desc: 'БДН',
+        },
     ];
 
     const range = (start: number, end: number) => {

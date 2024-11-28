@@ -133,7 +133,7 @@ export const ReportsTable: React.FC = () => {
                 <dd>{modal1Open.message}</dd>
             </dl>
             <Divider />
-            <h3>Детали и подсисстемы</h3>
+            <h3>Детали и подсистемы</h3>
             <div className='systemTree'>
                 <Timeline
                     items={[...

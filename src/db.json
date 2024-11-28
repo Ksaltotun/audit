@@ -53,7 +53,7 @@
     },
     {
       "dateApp": "2024-11-01T09:12:16.386Z",
-      "idEvent": 3,
+      "idEvent": "67455aa888345a8f0e4ba112",
       "event": " systemAction",
       "appInfo": {
         "appName": "BDN",
@@ -70,7 +70,7 @@
     },
     {
       "dateApp": "2024-11-24T09:12:16.386Z",
-      "idEvent": 4,
+      "idEvent": "67467aa808345a7f0e4ba112",
       "event": "security",
       "appInfo": {
         "appName": "KIS",
@@ -104,7 +104,7 @@
     },
     {
       "dateApp": "2024-12-16T09:12:16.386Z",
-      "idEvent": 6,
+      "idEvent": "67455aa836745a7f0e4ba112",
       "event": "userAction",
       "appInfo": {
         "appName": "GSZ",
