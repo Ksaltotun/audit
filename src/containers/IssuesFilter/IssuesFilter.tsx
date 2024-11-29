@@ -1,11 +1,9 @@
-import { useNavigate } from 'react-router-dom'
 import './IssuesFilter.scss'
 import locale from 'antd/locale/ru_RU';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux'
-import { Button, ConfigProvider, DatePicker, Dropdown, GetProps, MenuProps, Modal, Select, Space, TreeSelect } from 'antd'
+import { Button, ConfigProvider, DatePicker, Dropdown, MenuProps, Modal, Space, TreeSelect } from 'antd'
 import { addDateFilter, addSystemFilter, applyFilter } from '../../redux/reducers/ActionCreators'
 import { useState } from 'react'
-import { DownOutlined } from '@ant-design/icons'
 import dayjs from 'dayjs'
 import { IDateFilter } from '../../type'
 
@@ -13,51 +11,14 @@ import 'dayjs/locale/ru';
 import { flatToHierarchy } from '../../utils';
 const { SHOW_PARENT } = TreeSelect;
 
-const treeData = [
-    {
-        title: 'Node1',
-        value: '0-0',
-        key: '0-0',
-        children: [
-            {
-                title: 'Child Node1',
-                value: '0-0-0',
-                key: '0-0-0',
-            },
-        ],
-    },
-    {
-        title: 'Node2',
-        value: '0-1',
-        key: '0-1',
-        children: [
-            {
-                title: 'Child Node3',
-                value: '0-1-0',
-                key: '0-1-0',
-            },
-            {
-                title: 'Child Node4',
-                value: '0-1-1',
-                key: '0-1-1',
-            },
-            {
-                title: 'Child Node5',
-                value: '0-1-2',
-                key: '0-1-2',
-            },
-        ],
-    },
-];
-
 dayjs.locale('ru');
 
 const { RangePicker } = DatePicker;
 
 export const IssuesFilter: React.FC = () => {
-
-    const { systemsFilter, dateFilter } = useAppSelector((state) => state.filterIssuesReducer)
+    
     const dispatch = useAppDispatch()
+    const { systemsFilter, dateFilter } = useAppSelector((state) => state.filterIssuesReducer)
     const { reports, isLoading } = useAppSelector((state) => state.reportsReducer)
     const [modal1Open, setModal1Open] = useState(false);
     const [mode, setMode] = useState('')
@@ -65,38 +26,23 @@ export const IssuesFilter: React.FC = () => {
         startDate: '',
         endDate: ''
     })
-    const [modal2Open, setModal2Open] = useState(false);
     const [choosenSystemsFilter, setSystemsFilter] = useState<string[]>([]);
 
-    const [value, setValue] = useState(['0-0']);
+    const [value, setValue] = useState([]);
 
-    const onChange = (newValue: string[]) => {
-        console.log('onChange ', newValue);
+    const onChange = (newValue: any, title: any) => {
+        console.log('onChange ', newValue, title);
         setValue(newValue);
+        setSystemsFilter(title)
     };
-
-    const tProps = {
-        treeData,
-        value,
-        onChange,
-        treeCheckable: true,
-        showCheckedStrategy: SHOW_PARENT,
-        placeholder: 'Please select',
-        style: {
-            width: '100%',
-        },
-    };
-
 
     const perSystems: any = []
-    const mapCode = new Map()
+    const mapCode:string[] = []
     let buff: string[] = []
-    let ind = 1
+    let ind = 0
     reports.forEach((rep) => {
         const name = rep.appInfo.appName
         const sysArray = rep.appInfo.systemDetail.split('.').slice(1)
-
-
 
         if (buff.indexOf(name) === -1) {
             perSystems.push({
@@ -106,7 +52,6 @@ export const IssuesFilter: React.FC = () => {
                 'key': `0-${ind}`
             })
             ind++
-
         }
         buff.push(name)
         sysArray.forEach((e: string, i: number, arr: string[]) => {
@@ -123,34 +68,30 @@ export const IssuesFilter: React.FC = () => {
             }
         });
     })
-    const resultFilter = flatToHierarchy(perSystems)
+    const resultFilter = flatToHierarchy(perSystems).map((el: any) => ({ ...el, children: [...dd(el.children, el.value)] }))
 
-    const fff = resultFilter.map((el: any) => (dd(el, el.value)))
-
-
-    console.log(JSON.stringify(fff))
-
-    function dd(t: any, ky: string) {
-       
-        if (t.children && t.children.length > 0) {
-            let newT: any = t.children.map((item: any, ind: number) => ({ ...item, 'value': item.value + `-${ind}-`, 'key': item.value + '-${ind}-' }))
-            t.children = [...newT]
-            dd(newT, '-${ind}-')
-            return(t)
-        } else {
-            //console.log(t)
-            t.forEach((_: any, i: number, ar: any) => {
-                ar[i].value += `-${i}`
-                ar[i].key += `-${i}`
-            });
-            return;
-        }
+const tProps = {
+    treeData: [...resultFilter],
+    value,
+    onChange,
+    treeCheckable: true,
+    showCheckedStrategy: SHOW_PARENT,
+    placeholder: 'Выберите систему(подсистему)',
+    style: {
+        width: '100%',
+    },
+};
+    function dd(t: any, k:any): any {
+        t.forEach((el:any, ind: number) => {
+            el.value = k + '-' + ind
+            el.key = k + '-' + ind
+            if (el.children && el.children.length > 0){
+                dd(el.children, el.value)
+            }
+        });
+        return t
     }
 
-
-
-
-    //console.log(JSON.stringify(makeHierarchy(perSystems)))
 
     const handleChange = (value: string[]) => {
         setSystemsFilter(value)
@@ -160,7 +101,7 @@ export const IssuesFilter: React.FC = () => {
         {
             label: (
                 <div onClick={() => {
-                    setMode('system')
+                    setMode('systemsFilter')
                     setModal1Open(true)
                 }} >По системам
                 </div>
@@ -170,9 +111,19 @@ export const IssuesFilter: React.FC = () => {
         {
             label: (
                 <div onClick={() => {
-                    setMode('date')
+                    setMode('dateFilter')
                     setModal1Open(true)
                 }}> По дате
+                </div>
+            ),
+            key: '1',
+        },
+        {
+            label: (
+                <div onClick={() => {
+                    setMode('dateFilter')
+                    setModal1Open(true)
+                }}> По типу события
                 </div>
             ),
             key: '1',
@@ -202,86 +153,65 @@ export const IssuesFilter: React.FC = () => {
         },
     ];
 
-    const range = (start: number, end: number) => {
-        const result = [];
-        for (let i = start; i < end; i++) {
-            result.push(i);
-        }
-        return result;
-    };
+    const filtersOption = new Map<string, JSX.Element>([
+        ["systemsFilter", <Modal
+            title="Показывать по системам"
+            style={{ top: 20 }}
+            open={modal1Open}
+            onOk={() => {
+                dispatch(addSystemFilter(choosenSystemsFilter))
+                setSystemsFilter([])
+                setModal1Open(false)
+            }}
+            onCancel={() => {
+                setSystemsFilter([])
+                setModal1Open(false)
+            }}
+        >
+            <TreeSelect {...tProps} />
+        </Modal>],
+        ["dateFilter", <Modal
+            title="Показывать по датам"
+            style={{ top: 20 }}
+            open={modal1Open}
+            onOk={() => {
+                dispatch(addDateFilter({ ...chosenDates }))
+                setModal1Open(false)
+            }}
+            onCancel={() => {
+
+                setModal1Open(false)
+            }}
+        >
+            <div className='filterForm'>
+                <Space direction="vertical" size={12}>
+                    <ConfigProvider locale={locale}>
+                        <RangePicker
+                            onChange={(_, dateString) => {
+                                const res = {
+                                    startDate: dateString[0],
+                                    endDate: dateString[1]
+                                }
+                                setChosenDates({ ...res })
+                            }}
+                            showTime={{
+                                hideDisabledOptions: true,
+                                defaultValue: [dayjs('00:00:00', 'HH:mm'), dayjs('11:59:59', 'HH:mm')],
+                            }}
+                            format="YYYY-MM-DD HH:mm"
+                        />
+                    </ConfigProvider>
+                </Space>
+            </div>
+        </Modal>],
+        ["eventFilter", <></>]
+        ])
 
     return (
         <div className='IssuesFilter'>
             {
-                mode === 'system'
-                    ?
-                    <Modal
-                        title="Показывать по системам"
-                        style={{ top: 20 }}
-                        open={modal1Open}
-                        onOk={() => {
-                            dispatch(addSystemFilter(choosenSystemsFilter))
-                            setSystemsFilter([])
-                            setModal1Open(false)
-                        }}
-                        onCancel={() => {
-                            setSystemsFilter([])
-                            setModal1Open(false)
-                        }}
-                    >
-                        {/* <div className='filterForm'>
-                            <Select
-                                mode="multiple"
-                                style={{ width: '100%' }}
-                                placeholder="выберите системы"
-                                defaultValue={['KIS']}
-                                value={choosenSystemsFilter}
-                                onChange={handleChange}
-                                options={options}
-                                optionRender={(option: any) => {
-                                    return <Space>{option.data.desc}</Space>
-                                }}
-                            />
-                        </div> */}
-                        <TreeSelect {...tProps} />
-                    </Modal>
-                    : <Modal
-                        title="Показывать по датам"
-                        style={{ top: 20 }}
-                        open={modal1Open}
-                        onOk={() => {
-                            dispatch(addDateFilter({ ...chosenDates }))
-                            setModal1Open(false)
-                        }}
-                        onCancel={() => {
+                filtersOption.has(mode) ? filtersOption.get(mode) : null
 
-                            setModal1Open(false)
-                        }}
-                    >
-                        <div className='filterForm'>
-                            <Space direction="vertical" size={12}>
-                                <ConfigProvider locale={locale}>
-                                    <RangePicker
-                                        onChange={(_, dateString) => {
-                                            const res = {
-                                                startDate: dateString[0],
-                                                endDate: dateString[1]
-                                            }
-                                            setChosenDates({ ...res })
-
-
-                                        }}
-                                        showTime={{
-                                            hideDisabledOptions: true,
-                                            defaultValue: [dayjs('00:00:00', 'HH:mm'), dayjs('11:59:59', 'HH:mm')],
-                                        }}
-                                        format="YYYY-MM-DD HH:mm"
-                                    />
-                                </ConfigProvider>
-
-                            </Space>
-                        </div>
-                    </Modal>
             }
             <div className="filterHead">Блок фильтра</div>
             <div className="addBlock">
@@ -380,7 +310,6 @@ export const IssuesFilter: React.FC = () => {
                                 Сбросить
                             </Button>
                         </>
-
                         : null
                 }
             </div>

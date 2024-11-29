@@ -25,24 +25,13 @@ export const ReportsTable: React.FC = () => {
     const [modal1Open, setModal1Open] = useState<any>(false);
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        setTimeout(() => {
-
-            dispatch(setLoading(false))
-
-        }, 1200)
-
-        setTimeout(() => { dispatch(setLoading(true)) }, 10)
-    }, [])
-
+ 
     interface TableParams {
         pagination?: TablePaginationConfig;
         sortField?: SorterResult<any>['field'];
         sortOrder?: SorterResult<any>['order'];
     }
     type TSystemNames = "KIS" | "GSZ" | "ASU" | "BDN";
-    // type EventTagType = 'security' | 'systemError' | 'systemAction' | 'userAction'
-
 
     const [tableParams, setTableParams] = useState<TableParams>({
         pagination: {
@@ -107,10 +96,9 @@ export const ReportsTable: React.FC = () => {
             sortOrder: Array.isArray(sorter) ? undefined : sorter.order,
             sortField: Array.isArray(sorter) ? undefined : sorter.field,
         });
-
     };
 
-return isLoading ? <Spinner /> : <div className='ReportsTable' >
+    return isLoading ? <Spinner /> : <div className='ReportsTable' >
         <Modal
             title={modal1Open?.appInfo?.appName}
             centered
@@ -143,23 +131,22 @@ return isLoading ? <Spinner /> : <div className='ReportsTable' >
                                 <dd>{modal1Open.user.userID}</dd></>
                             : null
                     }
-
                 </dl>
                 <Divider />
                 <h3>Детали и подсистемы</h3>
                 <div className='systemTree'>
-    <Steps
-      progressDot
-      current={(modal1Open.appInfo?.systemDetail || '').split(".").length}
-      direction="vertical"
-      
-      items={[...
-        (modal1Open.appInfo?.systemDetail || '').split(".").map((item: string) => {
-            return { 'title': item }
-        })
-    ]}
-    />
-                   
+                    <Steps
+                        progressDot
+                        current={(modal1Open.appInfo?.systemDetail || '').split(".").length}
+                        direction="vertical"
+
+                        items={[...
+                            (modal1Open.appInfo?.systemDetail || '').split(".").map((item: string) => {
+                                return { 'title': item }
+                            })
+                        ]}
+                    />
+
                 </div>
             </div>
 
@@ -179,7 +166,8 @@ return isLoading ? <Spinner /> : <div className='ReportsTable' >
                     reports?.
                         filter((report) => {
                             if (systemsFilter.length) {
-                                return (systemsFilter.includes(report.appInfo.appName))
+                                console.log(systemsFilter)
+                                return report.appInfo.systemDetail.indexOf(systemsFilter) > -1
                             }
                             return true
                         })

@@ -7,6 +7,7 @@ const initialState: IFilters = {
         startDate: '',
         endDate: ''
     },
+    eventFilter: [],
     applied: false
 }
 
@@ -21,6 +22,9 @@ export const filterIssuesSlice = createSlice({
             state.dateFilter = action.payload
         },
         applyFilter (state, action: PayloadAction<boolean>){
+            state.applied = action.payload
+        },
+        addEventFilter (state, action: PayloadAction<any>){
             state.applied = action.payload
         }
     }

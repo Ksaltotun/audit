@@ -65,5 +65,6 @@ export interface IDateFilter {
 export interface IFilters {
     systemsFilter: string[],
     dateFilter: IDateFilter,
+    eventFilter: string[],
     applied: boolean
 }

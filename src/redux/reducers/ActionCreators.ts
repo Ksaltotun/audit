@@ -23,6 +23,13 @@ export const addSystemFilter = (payload: string[]) => (dispatch: AppDispatch) =>
         dispatch(filterIssuesSlice.actions.addSystemFilter(payload))
     }
 }
+
+export const addSEventFilter = (payload: string[]) => (dispatch: AppDispatch) => {
+    {
+        dispatch(filterIssuesSlice.actions.addSystemFilter(payload))
+    }
+}
+
 export const addDateFilter = (payload: IDateFilter) => (dispatch: AppDispatch) => {
     {
         dispatch(filterIssuesSlice.actions.addDateFilter(payload))
