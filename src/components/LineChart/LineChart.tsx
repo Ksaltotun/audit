@@ -6,7 +6,6 @@ interface IProps { props: Map<string, any> }
 
 export const LineChart = ({ props }: IProps) => {
   const data: any[] = [];
- console.log(data)
   props.forEach((v, k) => data.push({
     id: k,
     data: v.map((item: any) => {
@@ -20,7 +19,6 @@ export const LineChart = ({ props }: IProps) => {
 
     })
   }))
-  console.log(props)
   return (
     <>
     <ResponsiveLineCanvas

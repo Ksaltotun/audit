@@ -7,7 +7,6 @@ export const reportsApi = createApi({
     endpoints: (build) => ({
         fetchAllReports: build.query<IReportMessage[], unknown>({
             query: () => {
-                console.log(process.env)
                 return {
                     url: '/reportMessages',
                     method: 'GET'
@@ -17,3 +16,6 @@ export const reportsApi = createApi({
         
     })
 })
+
+
+

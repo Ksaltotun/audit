@@ -19,7 +19,6 @@ interface IProps {
 
 export const AnaliticsCharts: React.FC<IProps> = ({ props }: IProps) => {
 
-    console.log(props)
     const perSystems = new Map()
     const perYear = new Map()
 
@@ -48,7 +47,6 @@ export const AnaliticsCharts: React.FC<IProps> = ({ props }: IProps) => {
 
         const dateY = (new Date(rep.dateApp)).getFullYear() + ''
         const dateM = (new Date(rep.dateApp)).getMonth()
-        console.log(rep.idEvent, dateY)
         if (perYear.has(dateY)) {
             const pp = perYear.get(dateY)
             pp[dateM] = { [MONTHS[dateM]]: pp[dateM][MONTHS[dateM]] += 1 }

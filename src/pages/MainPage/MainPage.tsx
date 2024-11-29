@@ -25,7 +25,6 @@ export const MainPage: React.FC = () => {
     useEffect(()=>{
         setTimeout(()=>{
             const datas:any[] = data.reportMessages
-            console.log(data.reportMessages)
             dispatch(setLoading(false))
             dispatch(setReports(datas))
         }, 1700)

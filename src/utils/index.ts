@@ -32,3 +32,28 @@ export const systemNames = {
   "ASU": "АСУ 'Занятость'",
   "BDN": "БДН"
 }
+
+export function flatToHierarchy(flat:any) {
+  const roots:any = [],
+    map:any = [],
+    id:any = [];
+  flat.forEach((item:any) => {
+    map.push(Object.assign({}, item)); // копируем
+    id.push(item.title);
+  });
+
+  let i;
+  map.forEach((item:any) => {
+    if (!item.parentName || (i = id.indexOf(item.parentName)) === -1) {
+      roots.push(item);
+      return;
+    }
+
+    if (map[i].children) {
+      map[i].children.push(item);
+    } else {
+      map[i].children = [item];
+    }
+  });
+  return roots;
+}

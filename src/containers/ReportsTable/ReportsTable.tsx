@@ -51,9 +51,6 @@ export const ReportsTable: React.FC = () => {
         },
     });
 
-
-
-
     const columns: ColumnsType<IReportMessage> = [
         {
             title: 'Id в системе',
@@ -69,7 +66,6 @@ export const ReportsTable: React.FC = () => {
                 return (new Date(date)).toLocaleString("ru", timeFormat)
             },
             sorter: (a, b) => {
-                console.log((new Date(a.dateApp)).getTime() - (new Date(b.dateApp)).getTime())
                 return (new Date(a.dateApp)).getTime() - (new Date(b.dateApp)).getTime()
             },
             width: '20%',
@@ -112,13 +108,9 @@ export const ReportsTable: React.FC = () => {
             sortField: Array.isArray(sorter) ? undefined : sorter.field,
         });
 
-        // // `dataSource` is useless since `pageSize` changed
-        // if (pagination.pageSize !== tableParams.pagination?.pageSize) {
-
-        // }
     };
 
-    return isLoading ? <Spinner /> : <div className='ReportsTable' >
+return isLoading ? <Spinner /> : <div className='ReportsTable' >
         <Modal
             title={modal1Open?.appInfo?.appName}
             centered
@@ -127,7 +119,6 @@ export const ReportsTable: React.FC = () => {
                 setModal1Open(false)
             }}
             onCancel={() => {
-                console.log(modal1Open)
                 setModal1Open(false)
             }}
         >

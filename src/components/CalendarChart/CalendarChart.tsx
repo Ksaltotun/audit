@@ -30,7 +30,6 @@ export const CalendarChart: React.FC = () => {
       day: k
      })
    })
-   console.log(perDay)
     return (
         <ResponsiveCalendarCanvas
         data={data}
