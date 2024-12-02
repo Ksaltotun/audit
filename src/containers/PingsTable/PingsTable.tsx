@@ -4,6 +4,7 @@ import locale from 'antd/locale/ru_RU';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { useState } from 'react';
 import { ConfigProvider, Table, TableColumnsType, TableProps } from 'antd';
+import { KeysOfSystems, systemNames } from '../../utils';
 
 export const PingsTable: React.FC = () => {
     const { pings, isLoading } = useAppSelector((state) => state.reportsReducer)
@@ -12,12 +13,13 @@ export const PingsTable: React.FC = () => {
 
     interface DataType {
         key: React.Key;
-        system: string;
+        system: {};
         status: number;
+        dateTime: string;
         error?: string;
         id?: string
     }
-
+    const timeFormat: Intl.DateTimeFormatOptions = { year: 'numeric' ,month: 'numeric', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false,timeZone: 'UTC' }
     const columns: TableColumnsType<DataType> = [
         {
             title: 'Система',
@@ -31,10 +33,19 @@ export const PingsTable: React.FC = () => {
                     text: 'АСУ "Занятость"',
                     value: 'ASU',
                 },
+                {
+                    text: 'ГСЗ',
+                    value: 'GSZ',
+                },
+                {
+                    text: 'БДН',
+                    value: 'BDN',
+                }
 
             ],
-            onFilter: (value: any, record: any) => record.system.indexOf(value as string) === 0,
-            sorter: (a: any, b: any) => a.system > b.system ? 1 : -1,
+            render: (value)=>value.label,
+            onFilter: (value: any, record: any) => record.system.value.indexOf(value as string) === 0,
+            sorter: (a: any, b: any) => a.system.label > b.system.label ? 1 : -1,
 
         },
         {
@@ -44,14 +55,22 @@ export const PingsTable: React.FC = () => {
             filters: [
                 {
                     text: '2xx',
-                    value: '200',
+                    value: '2',
                 },
                 {
                     text: '4xx',
-                    value: '400',
+                    value: '4',
                 },
+                {
+                    text: '5xx',
+                    value: '5',
+                },
+              
             ],
-            onFilter: (value, record) => record.error?.indexOf(value as string) === 0,
+            onFilter: (value, record) => {
+                console.log(record, value)
+                return  (record.status + '' || '').indexOf(value as string) === 0
+            },
             sorter: (a, b) => a.status - b.status,
         },
         {
@@ -61,32 +80,22 @@ export const PingsTable: React.FC = () => {
         },
     ];
 
-    const data = [
-        {
-            key: '1',
-            system: 'John Brown',
-            status: 32,
-            error: 'New York No. 1 Lake Park',
-        },
-        {
-            key: '2',
-            system: 'Jim Green',
-            status: 42,
-            error: 'London No. 1 Lake Park',
-        },
-        {
-            key: '3',
-            system: 'Joe Black',
-            status: 32,
-            error: 'Sydney No. 1 Lake Park',
-        },
-        {
-            key: '4',
-            system: 'Jim Red',
-            status: 32,
-            error: 'London No. 2 Lake Park',
-        },
-    ];
+    const data:DataType[] = [];
+   // const timeFormat: Intl.DateTimeFormatOptions = { year: 'numeric' ,month: 'numeric', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false,timeZone: 'UTC' }
+    //return (new Date(date)).toLocaleString("ru", timeFormat)
+    pings.forEach((item, ind)=> {
+        data.push({
+            key: ind + '',
+            system: {
+                value: item.system as string,
+                label: systemNames[item.system as KeysOfSystems]
+            },
+            dateTime: (new Date(item.dateTime)).toLocaleString("ru", timeFormat),
+            status: item.status,
+            error: item.error ?? '',
+            id: item.id
+        })
+    })
 
     const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter, extra) => {
         console.log('params', pagination, filters, sorter, extra);

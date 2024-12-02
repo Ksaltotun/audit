@@ -8,10 +8,10 @@ import { useState } from 'react'
 
 import { IReportMessage } from '../../type'
 
-import { PieChart } from '../../components/PieChart/PieChart'
 import { LineChart } from '../../components/LineChart/LineChart'
 import { BarChart } from '../../components/BarChart/BarChart'
 import { MONTHS } from '../../utils'
+import { PieChart } from '../../components/PCIcon/PieChart'
 
 interface IProps {
     props: IReportMessage[]

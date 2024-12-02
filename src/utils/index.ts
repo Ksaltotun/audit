@@ -33,6 +33,7 @@ export const systemNames = {
 }
 
 export type KeysOfEvent = keyof typeof eventType
+export type KeysOfSystems = keyof typeof systemNames
 
 export function flatToHierarchy(flat: any) {
   const roots: any = [],

@@ -23,7 +23,7 @@ function App() {
           <Route path="observe" element={<Observ />} />
           <Route path="issues" element={<Issues />} />
           <Route path="pings" element={<Pings />} />
-          {/* <Route path="schema" element={<Schema />} /> */}
+          <Route path="schema" element={<Schema />} />
         </Route>
 
       </Routes>
