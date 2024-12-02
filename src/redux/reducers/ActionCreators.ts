@@ -24,11 +24,30 @@ export const addSystemFilter = (payload: string[]) => (dispatch: AppDispatch) =>
     }
 }
 
-export const addSEventFilter = (payload: string[]) => (dispatch: AppDispatch) => {
+export const addEventFilter = (payload: string[]) => (dispatch: AppDispatch) => {
     {
-        dispatch(filterIssuesSlice.actions.addSystemFilter(payload))
+        dispatch(filterIssuesSlice.actions.addEventFilter(payload))
     }
 }
+
+export const addIdKISFilter = (payload: string[]) => (dispatch: AppDispatch) => {
+    {
+        dispatch(filterIssuesSlice.actions.addIdIdKISFilter(payload))
+    }
+}
+
+export const addIdUserFilter = (payload: string[]) => (dispatch: AppDispatch) => {
+    {
+        dispatch(filterIssuesSlice.actions.addIdUserFilter(payload))
+    }
+}
+
+export const addMessageFilter = (payload: string) => (dispatch: AppDispatch) => {
+    {
+        dispatch(filterIssuesSlice.actions.addMessageFilter(payload))
+    }
+}
+
 
 export const addDateFilter = (payload: IDateFilter) => (dispatch: AppDispatch) => {
     {
@@ -45,6 +64,12 @@ export const applyFilter = (payload: boolean) => (dispatch: AppDispatch) => {
 export const setReports = (payload: any[]) => (dispatch: AppDispatch) => {
     {
         dispatch(reportSlice.actions.setReports(payload))
+    }
+}
+
+export const setPings = (payload: any[]) => (dispatch: AppDispatch) => {
+    {
+        dispatch(reportSlice.actions.setPings(payload))
     }
 }
 

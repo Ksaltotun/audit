@@ -19,13 +19,12 @@ import { eventType, systemNames } from '../../utils'
 export const ReportsTable: React.FC = () => {
     type ColumnsType<T extends object = object> = TableProps<T>['columns'];
     type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
-    const { systemsFilter, dateFilter, applied } = useAppSelector((state) => state.filterIssuesReducer)
+    const { systemsFilter, dateFilter, eventFilter, idKISFilter, idUserFilter, messageFilter, applied } = useAppSelector((state) => state.filterIssuesReducer)
     // const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
     const { reports, isLoading } = useAppSelector((state) => state.reportsReducer)
     const [modal1Open, setModal1Open] = useState<any>(false);
     const dispatch = useAppDispatch()
 
- 
     interface TableParams {
         pagination?: TablePaginationConfig;
         sortField?: SorterResult<any>['field'];
@@ -36,7 +35,7 @@ export const ReportsTable: React.FC = () => {
     const [tableParams, setTableParams] = useState<TableParams>({
         pagination: {
             current: 1,
-            pageSize: 5,
+            pageSize: 6,
         },
     });
 
@@ -51,7 +50,7 @@ export const ReportsTable: React.FC = () => {
             title: 'Дата (в системе)',
             dataIndex: 'dateApp',
             render: (date) => {
-                const timeFormat: Intl.DateTimeFormatOptions = { month: 'numeric', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false, timeZoneName: 'short', timeZone: 'UTC' }
+                const timeFormat: Intl.DateTimeFormatOptions = { year: 'numeric' ,month: 'numeric', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false,timeZone: 'UTC' }
                 return (new Date(date)).toLocaleString("ru", timeFormat)
             },
             sorter: (a, b) => {
@@ -156,7 +155,7 @@ export const ReportsTable: React.FC = () => {
                 return {
                     onClick: (event) => {
                         setModal1Open(record)
-                    }, // click row
+                    }, 
                 };
             }}
             columns={columns}
@@ -177,6 +176,34 @@ export const ReportsTable: React.FC = () => {
                                 const end = (new Date(dateFilter.endDate || '2999-03-01')).getTime()
                                 const date = (new Date(report.dateApp)).getTime()
                                 return (start <= date && date <= end)
+                            }
+                            return true
+                        })
+                        .filter((report) => {
+                            if (eventFilter.length) {
+                                
+                                return eventFilter.indexOf(report.event) > -1
+                            }
+                            return true
+                        })
+                        .filter((report) => {
+                            if (idKISFilter.length) {
+                                
+                                return idKISFilter.indexOf(report.idKIS) > -1
+                            }
+                            return true
+                        })
+                        .filter((report) => {
+                            if (idUserFilter.length) {
+                                
+                                return idUserFilter.indexOf(report.user.userID) > -1
+                            }
+                            return true
+                        })
+                        .filter((report) => {
+                            if (messageFilter) {
+                                
+                                return report.message.indexOf(messageFilter) > -1
                             }
                             return true
                         })

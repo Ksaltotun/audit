@@ -18,11 +18,11 @@ export const SYSTEMS_COLOR_SETTINGS = new Map<string, any>([
   }]
 ])
 
-export const eventType = {
+export const eventType= {
   "systemError": "Системная ошибка",
   "security": "Инцидент безопасности",
   "systemAction": "Системное событие",
-  "userAction": "Дейсвие пользователя"
+  "userAction": "Действие пользователя"
 }
 
 export const systemNames = {
@@ -31,6 +31,8 @@ export const systemNames = {
   "ASU": "АСУ 'Занятость'",
   "BDN": "БДН"
 }
+
+export type KeysOfEvent = keyof typeof eventType
 
 export function flatToHierarchy(flat: any) {
   const roots: any = [],
