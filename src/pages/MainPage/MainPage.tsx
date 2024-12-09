@@ -27,8 +27,8 @@ export const MainPage: React.FC = () => {
             dispatch(setLoading(false))
             dispatch(setReports(datas))
             dispatch(setPings(pings))
-        }, 1700)
-        setTimeout(()=>{dispatch(setLoading(true))}, 10)
+        }, 10)
+        setTimeout(()=>{dispatch(setLoading(true))}, 0)
     }, [])
     return (
         <>
@@ -43,7 +43,7 @@ export const MainPage: React.FC = () => {
             <NavButton type='login' text={'Аналитика'} routeTo={'analitics'} />
             <NavButton type='login' text={'Отчеты'} routeTo={'issues'} />
             <NavButton type='login' text={'Проверки'} routeTo={'pings'} />
-            {<NavButton type='login' text={'Схема'} routeTo={'schema'} />}
+            {/* {<NavButton type='login' text={'Схема'} routeTo={'schema'} />} */}
         </aside>
         <section className='contentBox'>
             <Outlet />

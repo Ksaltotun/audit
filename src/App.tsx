@@ -18,12 +18,13 @@ function App() {
         <Route element={<MainPage />}>
           {/* <Route index element={<AdminPage />} /> */}
           {/* <Route path="*" element={<AdminPage />} /> */}
-          <Route index element={<Analitics />} />
+          {/* <Route index element={<Observ />} /> */}
           <Route path="analitics" element={<Analitics />} />
           <Route path="observe" element={<Observ />} />
+          <Route index element={<Issues />} />
           <Route path="issues" element={<Issues />} />
           <Route path="pings" element={<Pings />} />
-          <Route path="schema" element={<Schema />} />
+          {/* <Route path="schema" element={<Schema />} /> */}
         </Route>
 
       </Routes>

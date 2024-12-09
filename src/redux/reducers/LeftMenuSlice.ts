@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IPagesNames, RoutesType } from "../../type";
 
 const initialState: IPagesNames = {
-    name: 'observe',
+    name: 'issues',
     isPageLoading: false 
 }
 
