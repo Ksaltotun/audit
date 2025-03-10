@@ -17,7 +17,7 @@ import { eventType, systemNames } from '../../utils'
 
 
 export const ReportsTable: React.FC<any> = (props) => {
-    const {reports, isLoading} = props
+    //const {reports, isLoading} = props
     type ColumnsType<T extends object = object> = TableProps<T>['columns'];
     type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
     const { systemsFilter, dateFilter, eventFilter, idKISFilter, idUserFilter, messageFilter, applied } = useAppSelector((state) => state.filterIssuesReducer)
