@@ -7,6 +7,11 @@ const initialState: IFilters = {
         startDate: '',
         endDate: ''
     },
+    eventFilter: [],
+    idKISFilter: [],
+    idUserFilter: [],
+    messageFilter: '',
+
     applied: false
 }
 
@@ -20,9 +25,21 @@ export const filterIssuesSlice = createSlice({
         addDateFilter (state, action: PayloadAction<IDateFilter>){
             state.dateFilter = action.payload
         },
+        addEventFilter (state, action: PayloadAction<any>){
+            state.eventFilter = [...action.payload]
+        },
+        addIdIdKISFilter (state, action: PayloadAction<any>){
+            state.idKISFilter = [...action.payload]
+        },
+        addIdUserFilter (state, action: PayloadAction<any>){
+            state.idUserFilter = [...action.payload]
+        },
+        addMessageFilter (state, action: PayloadAction<any>){
+            state.messageFilter = action.payload
+        },
         applyFilter (state, action: PayloadAction<boolean>){
             state.applied = action.payload
-        }
+        },
     }
 })
 

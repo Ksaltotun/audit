@@ -8,10 +8,10 @@ import { useState } from 'react'
 
 import { IReportMessage } from '../../type'
 
-import { PieChart } from '../../components/PieChart/PieChart'
 import { LineChart } from '../../components/LineChart/LineChart'
 import { BarChart } from '../../components/BarChart/BarChart'
 import { MONTHS } from '../../utils'
+import { PieChart } from '../../components/PCIcon/PieChart'
 
 interface IProps {
     props: IReportMessage[]
@@ -19,7 +19,6 @@ interface IProps {
 
 export const AnaliticsCharts: React.FC<IProps> = ({ props }: IProps) => {
 
-console.log(props)
     const perSystems = new Map()
     const perYear = new Map()
 
@@ -45,30 +44,29 @@ console.log(props)
                     userAction: rep.event === 'userAction' ? 1 : 0
                 })
         }
-        
+
         const dateY = (new Date(rep.dateApp)).getFullYear() + ''
         const dateM = (new Date(rep.dateApp)).getMonth()
-        console.log(rep.idEvent, dateY)
-        if (perYear.has(dateY)){
-           const pp = perYear.get(dateY)
-           pp[dateM] = {[MONTHS[dateM]]:pp[dateM][MONTHS[dateM]] += 1}
-          
+        if (perYear.has(dateY)) {
+            const pp = perYear.get(dateY)
+            pp[dateM] = { [MONTHS[dateM]]: pp[dateM][MONTHS[dateM]] += 1 }
+
             perYear.set(dateY, [...pp])
         } else {
-            perYear.set(dateY, MONTHS.map(item=>({[item]:0})))
+            perYear.set(dateY, MONTHS.map(item => ({ [item]: 0 })))
         }
     })
 
     return (
         <div className='AnaliticsCharts' >
             <div className="div1">
-                
-                <LineChart props={perYear}/>
+
+                <LineChart props={perYear} />
 
             </div>
             <div className="div2">
-              <h5>Распределение репортов по системам</h5>
-                <PieChart props={perSystems}  />
+                <h5>Распределение репортов по системам</h5>
+                <PieChart props={perSystems} />
 
             </div>
             <div className="div3">

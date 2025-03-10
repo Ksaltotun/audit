@@ -9,11 +9,9 @@ import { Header } from '../../containers/Header/Header'
 import { AdminPage } from '../AdminPage/AdminPage'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { NavButton } from '../../components/NavButton/NavButton'
-import { IReportMessage, IUser } from '../../type'
-import { reportsApi } from '../../service/ReportService'
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow'
 import data from '../../db.json'
-import { setLoading, setReports } from '../../redux/reducers/ActionCreators'
+import { setLoading, setPings, setReports } from '../../redux/reducers/ActionCreators'
 
 
 
@@ -25,12 +23,12 @@ export const MainPage: React.FC = () => {
     useEffect(()=>{
         setTimeout(()=>{
             const datas:any[] = data.reportMessages
-            console.log(data.reportMessages)
+            const pings:any[] = data.systemsPing
             dispatch(setLoading(false))
             dispatch(setReports(datas))
-        }, 1700)
-
-        setTimeout(()=>{dispatch(setLoading(true))}, 10)
+            dispatch(setPings(pings))
+        }, 10)
+        setTimeout(()=>{dispatch(setLoading(true))}, 0)
     }, [])
     return (
         <>
@@ -44,7 +42,8 @@ export const MainPage: React.FC = () => {
             <NavButton type='login' text={'Обзор'} routeTo={'observe'} />
             <NavButton type='login' text={'Аналитика'} routeTo={'analitics'} />
             <NavButton type='login' text={'Отчеты'} routeTo={'issues'} />
-            <NavButton type='login' text={'Схема'} routeTo={'schema'} />
+            <NavButton type='login' text={'Проверки'} routeTo={'pings'} />
+            {/* {<NavButton type='login' text={'Схема'} routeTo={'schema'} />} */}
         </aside>
         <section className='contentBox'>
             <Outlet />

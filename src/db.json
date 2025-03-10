@@ -1,293 +1,151 @@
 {
   "reportMessages": [
     {
-      "dateApp": "2024-11-16T09:12:16.386Z",
-      "idEvent":0,
-      "event": "systemError",
+      "dateApp": "2024-11-25T09:12:16.386Z",
+      "idEvent": "67455aa808345a7f0e4ba112",
+      "event": "userAction",
       "appInfo": {
-        "appName": "KIS",
-        "systemDetail": "kis.RegisterOfEmploymentAgencies.Agencies"
+        "appName": "BDN",
+        "systemDetail": "БДН.Списки граждан.Оплата ПСМ239.Подписание списка"
       },
       "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "MegaBoss",
+        "userID": "4001381174171364H046PB7",
+        "userName": "Сергей Сергеев",
         "userRole": "admin"
       },
-      "message": "Была изменена роль пользователя с 'пользователь' на 'администратор' ",
-      "dateKis": "2024-11-16T09:12:16.386Z", 
+      "message": "Список граждан, оплачивающих услуги (ПСМ №239), подписан",
+      "dateKis": "2024-11-25T09:12:16.386Z",
       "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
     },
     {
-      "dateApp": "2024-10-16T09:12:16.386Z",
-      "idEvent": 1,
-      "event": "security",
+      "dateApp": "2024-11-27T09:12:16.386Z",
+      "idEvent": "37455ab808365a7f0e4ba111",
+      "event": "userAction",
       "appInfo": {
-        "appName": "ASU",
-        "systemDetail": "asu.rtrtrtr.trtrtr.jfjfjjf"
+        "appName": "BDN",
+        "systemDetail": "БДН.Списки граждан.Перерасчет ПСМ166.Подписание списка"
       },
       "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Lord",
+        "userID": "5001331174261384H046PB4",
+        "userName": "Роман Мищенко",
         "userRole": "admin"
       },
-      "message": "hhjkdsgfhj dfgjksdfgjk dsfgkjlcxfvl;k",
-      "dateKis": "2024-11-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
+      "message": "Список на перерасчет по ПСМ 166 подписан",
+      "dateKis": "2024-11-27T09:12:16.386Z",
+      "idKIS": "caf205c1-ed9b-49c6-839e-111975995d08"
     },
     {
-      "dateApp": "2024-12-16T09:12:16.386Z",
-      "idEvent": 2,
-      "event": "systemAction",
-      "appInfo": {
-        "appName": "GSZ",
-        "systemDetail": "gsz.asdasd.llllflflfl"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Иосиф Сталин",
-        "userRole": "user"
-      },
-      "message": "hsakjdf sakjdfpeooeoe ddddd",
-      "dateKis": "2024-13-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2023-11-16T09:12:16.386Z",
-      "idEvent": 3,
+      "dateApp": "2024-11-28T09:12:16.386Z",
+      "idEvent": "1743553098345a7f04ba112",
       "event": "userAction",
       "appInfo": {
         "appName": "KIS",
-        "systemDetail": "kis.gggdgdggdgdgd"
+        "systemDetail": "КИС.Паспорт ФЛ.Просмотр"
       },
       "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Bober",
-        "userRole": "admin"
-      },
-      "message": "ppppppppp ooooooooo iii iii iii ii",
-      "dateKis": "2024-20-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2024-11-16T09:12:16.386Z",
-      "idEvent": 4,
-      "event": "systemError",
-      "appInfo": {
-        "appName": "KIS",
-        "systemDetail": "kis.RegisterOfEmploymentAgencies.Agencies"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "MegaBoss",
-        "userRole": "admin"
-      },
-      "message": "Была изменена роль пользователя с 'пользователь' на 'администратор' ",
-      "dateKis": "2024-11-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2024-10-16T09:12:16.386Z",
-      "idEvent": 5,
-      "event": "systemError",
-      "appInfo": {
-        "appName": "ASU",
-        "systemDetail": "asu.rtrtrtr.trtrtr.jfjfjjf"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Lord",
-        "userRole": "admin"
-      },
-      "message": "hhjkdsgfhj dfgjksdfgjk dsfgkjlcxfvl;k",
-      "dateKis": "2024-11-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2024-12-16T09:12:16.386Z",
-      "idEvent": 6,
-      "event": "systemAction",
-      "appInfo": {
-        "appName": "GSZ",
-        "systemDetail": "gsz.asdasd.llllflflfl.uiuuuuu"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Иосиф Сталин",
+        "userID": "baf205c3-ed4b-49c1-119e-193975995d06",
+        "userName": "Мария Семенова",
         "userRole": "user"
       },
-      "message": "hsakjdf sakjdfpeooeoe ddddd",
-      "dateKis": "2024-13-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
+      "message": "Просмотр паспорта ФЛ 4121080B032PB6",
+      "dateKis": "2024-11-28T09:12:16.386Z",
+      "idKIS": "haf205c3-ek9b-44c5-739e-195975995d03"
     },
     {
-      "dateApp": "2024-10-16T09:12:16.386Z",
-      "idEvent": 7,
-      "event": "userAction",
+      "dateApp": "2024-11-01T09:12:16.386Z",
+      "idEvent": "67455aa888345a8f0e4ba112",
+      "event": "systemAction",
       "appInfo": {
-        "appName": "KIS",
-        "systemDetail": "kis.gggdgdggdgdgd"
+        "appName": "BDN",
+        "systemDetail": "БДН.Списки граждан.Оплата ПСМ239.Отправка в ЕРИП"
       },
       "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Bober",
+        "userID": "ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
+        "userName": "Adminovich",
         "userRole": "admin"
       },
-      "message": "ppppppppp ooooooooo iii iii iii ii",
-      "dateKis": "2024-20-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
+      "message": "Списки граждан, оплачивающих услуги (ПСМ №239) отправлены в ЕРИП",
+      "dateKis": "2024-11-01T09:12:16.386Z",
+      "idKIS": "baf205c3-ed4b-49c1-119e-193975995d06"
     },
     {
-      "dateApp": "2024-11-16T09:12:16.386Z",
-      "idEvent": 8,
+      "dateApp": "2024-11-24T09:12:16.386Z",
+      "idEvent": "67467aa808345a7f0e4ba112",
       "event": "security",
       "appInfo": {
         "appName": "KIS",
-        "systemDetail": "kis.RegisterOfEmploymentAgencies.Agencies"
+        "systemDetail": "КИС.Расчет зарплаты.Таблицы.Просмотр"
       },
       "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "MegaBoss",
+        "userID": "ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
+        "userName": "Ирина Сидорова",
         "userRole": "admin"
       },
-      "message": "Была изменена роль пользователя с 'пользователь' на 'администратор' ",
-      "dateKis": "2024-11-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
+      "message": "Просмотр подраздела 'Таблицы' раздела «Расчет зарплаты» пользователем admin123@cis.by без соответствующих прав",
+      "dateKis": "2024-11-24T09:12:16.386Z",
+      "idKIS": "kaf205c2-ed9b-59c5-839e-125975995d05"
     },
     {
-      "dateApp": "2024-10-16T09:12:16.386Z",
-      "idEvent": 9,
-      "event": "userAction",
-      "appInfo": {
-        "appName": "ASU",
-        "systemDetail": "asu.rtrtrtr.trtrtr.jfjfjjf"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Lord",
-        "userRole": "admin"
-      },
-      "message": "hhjkdsgfhj dfgjksdfgjk dsfgkjlcxfvl;k",
-      "dateKis": "2024-11-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2024-12-16T09:12:16.386Z",
-      "idEvent": 10,
-      "event": "userAction",
-      "appInfo": {
-        "appName": "GSZ",
-        "systemDetail": "gsz.asdasd.llllflflfl.ll"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Иосиф Сталин",
-        "userRole": "user"
-      },
-      "message": "hsakjdf sakjdfpeooeoe ddddd",
-      "dateKis": "2024-11-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2024-03-16T09:12:16.386Z",
-      "idEvent": 11,
-      "event": "systemAction",
-      "appInfo": {
-        "appName": "KIS",
-        "systemDetail": "kis.rrrrrrrrrrr"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Bober",
-        "userRole": "admin"
-      },
-      "message": "ttt tt t tt t t t t ",
-      "dateKis": "2024-20-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2024-10-16T09:12:16.386Z",
-      "idEvent": 12,
-      "event": "systemAction",
-      "appInfo": {
-        "appName": "ASU",
-        "systemDetail": "asu.rtrtrtr.trtrtr.jfjfjjf"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Lord",
-        "userRole": "admin"
-      },
-      "message": "hhjkdsgfhj dfgjksdfgjk dsfgkjlcxfvl;k",
-      "dateKis": "2024-11-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2024-10-16T09:12:16.386Z",
-      "idEvent": 13,
-      "event": "systemAction",
-      "appInfo": {
-        "appName": "ASU",
-        "systemDetail": "asu.rtrtrtr.trtrtr.jfjfjjf"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Lord",
-        "userRole": "admin"
-      },
-      "message": "hhjkdsgfhj dfgjksdfgjk dsfgkjlcxfvl;k",
-      "dateKis": "2024-11-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2024-12-16T09:12:16.386Z",
-      "idEvent": 14,
-      "event": "systemAction",
-      "appInfo": {
-        "appName": "GSZ",
-        "systemDetail": "gsz.asdasd.llllflflfl.ll"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Иосиф Сталин",
-        "userRole": "user"
-      },
-      "message": "hsakjdf sakjdfpeooeoe ddddd",
-      "dateKis": "2024-13-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2024-12-16T09:12:16.386Z",
-      "idEvent": 15,
-      "event": "security",
-      "appInfo": {
-        "appName": "GSZ",
-        "systemDetail": "gsz.asdasd.llllflflfl.ll"
-      },
-      "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Иосиф Сталин",
-        "userRole": "user"
-      },
-      "message": "hsakjdf sakjdfpeooeoe ddddd",
-      "dateKis": "2024-13-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
-    },
-    {
-      "dateApp": "2024-12-16T09:12:16.386Z",
-      "idEvent": 16,
+      "dateApp": "2024-11-25T09:12:16.386Z",
+      "idEvent": "67455aa836745a7f2e4ba112",
       "event": "systemError",
       "appInfo": {
-        "appName": "GSZ",
-        "systemDetail": "gsz.asdasd.llllflflfl.ll"
+        "appName": "BDN",
+        "systemDetail": "БДН.Списки от поставщиков"
       },
       "user": {
-        "userID":"ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
-        "userName": "Иосиф Сталин",
+        "userID": "ec7c7a5f-04d8-4e98-9ee6-ed6545f59fd5",
+        "userName": "Ольга Петрова",
+        "userRole": "admin"
+      },
+      "message": "Список 5b8906622d9e7708609e252b обработан с ошибкой",
+      "dateKis": "2024-11-25T09:12:16.386Z",
+      "idKIS": "aaf205a3-ea9b-49a5-839a-235975995d03"
+    },
+    {
+      "dateApp": "2024-12-16T09:12:16.386Z",
+      "idEvent": "67455aa836745a7f0e4ba112",
+      "event": "userAction",
+      "appInfo": {
+        "appName": "GSZ",
+        "systemDetail": "ГСЗ.Нанимателю.Мои вакансии.Удаление"
+      },
+      "user": {
+        "userID": "191567890",
+        "userName": "ООО 'Солнышко'",
         "userRole": "user"
       },
-      "message": "hsakjdf sakjdfpeooeoe ddddd",
-      "dateKis": "2024-13-16T09:12:16.386Z", 
-      "idKIS": "eaf205c3-ed9b-49c5-839e-195975995d04"
+      "message": "Вакансия 123940 удалена",
+      "dateKis": "2024-12-16T09:12:16.386Z",
+      "idKIS": "evf205c3-ed9v-49c5-849e-995975995d08"
+    }
+  ],
+  "systemsPing": [
+    {
+      "id":"3e1e2a0b-7c9a-4104-80b4-8ab587cb757e",
+      "system": "KIS",
+      "dateTime": "2024-11-28T09:12:16.386Z", 
+      "status": "200" 
+    },
+    {
+      "id":"3df7b4f0-871a-4bb0-b79f-1a26cb742eff",
+      "system": "ASU",
+      "dateTime": "2024-12-28T09:12:16.386Z",
+      "status": "400",
+      "error": "Этот дрес в системе не существует"
+    },
+    {
+      "id":"e08bb231-8427-40c9-8c3d-652ad6040156",
+      "system": "GSZ",
+      "dateTime": "2024-13-28T09:12:16.386Z",
+      "status": "500",
+      "error": "Система не отвечает"
+    },
+    {
+      "id":"74b9d721-5fe7-481a-8298-311267409abf",
+      "system": "BDN",
+      "dateTime": "2024-14-28T09:12:16.386Z",
+      "status": "200"
     }
   ]
 }

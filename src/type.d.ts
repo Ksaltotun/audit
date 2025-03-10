@@ -1,10 +1,12 @@
+import {KeysOfEvent} from './utils'
+
 export interface InputProps {
     type: 'text' | 'password',
     placeholder: string,
     changeFunction: Function
 }
 
-export type RoutesType = 'main' | '/' | null | 'admin' | 'schema' | 'issues' | 'analitics' | 'observe'
+export type RoutesType = 'main' | '/' | null | 'admin' | 'schema' | 'issues' | 'analitics' | 'observe' | 'pings'
 
 export interface IPagesNames {
     name: Routes,
@@ -36,7 +38,7 @@ export interface IReportMessage {
 
 export type IdType = number | string //либо натуральное число либо GUID (строка)
 
-export type EventTagType = 'security' | 'systemError' | 'systemAction' | 'userAction'// тег(признак) события
+export type EventTagType = 'security' | 'systemError' | 'systemAction' | 'userAction' // тег(признак) события
 
 export interface IAppInfo {
     appName: AppName, // Имя системы, согласуется системой с КИС 
@@ -65,5 +67,9 @@ export interface IDateFilter {
 export interface IFilters {
     systemsFilter: string[],
     dateFilter: IDateFilter,
+    eventFilter: KeysOfEvent[],
+    idKISFilter: string[],
+    idUserFilter: string[],
+    messageFilter: string,
     applied: boolean
 }

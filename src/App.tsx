@@ -6,6 +6,7 @@ import { Issues } from './pages/Issues/Issues';
 import { Schema } from './pages/Schema/Schema';
 import { Analitics } from './pages/Analitics/Analitics';
 import { Observ } from './pages/Observ/Observ';
+import { Pings } from './pages/Pings/Pings';
 
 function App() {
 
@@ -17,11 +18,13 @@ function App() {
         <Route element={<MainPage />}>
           {/* <Route index element={<AdminPage />} /> */}
           {/* <Route path="*" element={<AdminPage />} /> */}
-          <Route index element={<Observ />} />
+          {/* <Route index element={<Observ />} /> */}
           <Route path="analitics" element={<Analitics />} />
           <Route path="observe" element={<Observ />} />
+          <Route index element={<Issues />} />
           <Route path="issues" element={<Issues />} />
-          <Route path="schema" element={<Schema />} />
+          <Route path="pings" element={<Pings />} />
+          {/* <Route path="schema" element={<Schema />} /> */}
         </Route>
 
       </Routes>

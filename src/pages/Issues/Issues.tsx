@@ -1,9 +1,12 @@
 
 
+import { useEffect } from 'react'
 import { IssuesFilter } from '../../containers/IssuesFilter/IssuesFilter'
 import { ReportsTable } from '../../containers/ReportsTable/ReportsTable'
 import { useAppSelector } from '../../hooks/redux'
 import './Issues.scss'
+import { useAppDispatch } from '../../hooks/redux'
+import { setLoading, setReports } from '../../redux/reducers/ActionCreators'
 
 
 export const Issues: React.FC = () => {
@@ -12,8 +15,8 @@ export const Issues: React.FC = () => {
     return (
         <section className='Issues'>
             <h2>Отчеты систем</h2>
-            <IssuesFilter {...{ reports: [...reports], isLoading }} />
-            <ReportsTable {...{ reports: [...reports], isLoading }} />
+            <IssuesFilter/>
+            <ReportsTable/>
         </section>
     )
 }
