@@ -5,7 +5,8 @@ import { Button, ConfigProvider, DatePicker, Dropdown, Input, MenuProps, Modal, 
 import { addDateFilter, addEventFilter, addIdKISFilter, addIdUserFilter, addMessageFilter, addSystemFilter, applyFilter } from '../../redux/reducers/ActionCreators'
 import { useState } from 'react'
 import dayjs from 'dayjs'
-import { IDateFilter } from '../../type'
+import { IDateFilter, IReportMessage } from '../../type'
+import { reportsApi } from '../../service/ReportService'
 
 import 'dayjs/locale/ru';
 import { eventType, flatToHierarchy, KeysOfEvent } from '../../utils';
@@ -19,7 +20,7 @@ export const IssuesFilter: React.FC = () => {
 
     const dispatch = useAppDispatch()
     const { systemsFilter, dateFilter, eventFilter, idKISFilter, idUserFilter, messageFilter } = useAppSelector((state) => state.filterIssuesReducer)
-    const { reports, isLoading } = useAppSelector((state) => state.reportsReducer)
+    const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
     const [eventF, setEventF] = useState<KeysOfEvent[]>([]);
     const [idKISF, setIdKISF] = useState<string[]>([])
     const [idUserF, setIdUserF] = useState<string[]>([])
@@ -72,8 +73,8 @@ export const IssuesFilter: React.FC = () => {
     const perSystems: any = []
     const mapCode: string[] = []
     let buff: string[] = []
-    let ind = 0
-    reports.forEach((rep) => {
+    let ind = 0;
+    (reports || []).forEach((rep: IReportMessage) => {
         const name = rep.appInfo.appName
         const sysArray = rep.appInfo.systemDetail.split('.').slice(1)
 
@@ -103,7 +104,7 @@ export const IssuesFilter: React.FC = () => {
     })
 
     const resultFilter = flatToHierarchy(perSystems).map((el: any) => ({ ...el, children: [...buildTree(el.children, el.value)] }))
-
+    console.log(resultFilter)
     const tProps = {
         treeData: [...resultFilter],
         value,
@@ -115,6 +116,7 @@ export const IssuesFilter: React.FC = () => {
             width: '100%',
         },
     };
+
     function buildTree(t: any, k: any): any {
         t.forEach((el: any, ind: number) => {
             el.value = k + '-' + ind

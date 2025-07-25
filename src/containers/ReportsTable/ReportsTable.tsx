@@ -17,12 +17,10 @@ import { eventType, systemNames } from '../../utils'
 
 
 export const ReportsTable: React.FC<any> = (props) => {
-    //const {reports, isLoading} = props
     type ColumnsType<T extends object = object> = TableProps<T>['columns'];
     type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
     const { systemsFilter, dateFilter, eventFilter, idKISFilter, idUserFilter, messageFilter, applied } = useAppSelector((state) => state.filterIssuesReducer)
-    // const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
-    const { reports, isLoading } = useAppSelector((state) => state.reportsReducer)
+    const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
     const [modal1Open, setModal1Open] = useState<any>(false);
     const dispatch = useAppDispatch()
 
@@ -119,7 +117,7 @@ export const ReportsTable: React.FC<any> = (props) => {
                     <dt>Id в системе</dt>
                     <dd>{modal1Open.idEvent}</dd>
                     <dt>Id в КИС "Аудит"</dt>
-                    <dd>{modal1Open.idKIS}</dd>
+                    <dd>{modal1Open.id}</dd>
                     <dt>Тип события</dt>
                     <dd>{eventType[modal1Open.event as EventTagType]}</dd>
                     <dt>Сообщение от системы</dt>
@@ -155,6 +153,7 @@ export const ReportsTable: React.FC<any> = (props) => {
             onRow={(record, rowIndex) => {
                 return {
                     onClick: (event) => {
+                        console.log(record)
                         setModal1Open(record)
                     }, 
                 };
@@ -167,7 +166,7 @@ export const ReportsTable: React.FC<any> = (props) => {
                         filter((report) => {
                             if (systemsFilter.length) {
                                 console.log(systemsFilter)
-                                return report.appInfo.systemDetail.indexOf(systemsFilter) > -1
+                                return report.appInfo.systemDetail.indexOf('yy') > -1
                             }
                             return true
                         })
@@ -190,14 +189,14 @@ export const ReportsTable: React.FC<any> = (props) => {
                         .filter((report) => {
                             if (idKISFilter.length) {
                                 
-                                return idKISFilter.indexOf(report.idKIS) > -1
+                                return idKISFilter.indexOf(report.id) > -1
                             }
                             return true
                         })
                         .filter((report) => {
                             if (idUserFilter.length) {
                                 
-                                return idUserFilter.indexOf(report.user.userID) > -1
+                                return idUserFilter.indexOf((report.user.userId).toString()) > -1
                             }
                             return true
                         })

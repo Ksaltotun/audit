@@ -19,6 +19,7 @@ export const reportSlice = createSlice({
     initialState,
     reducers: {
         setReports(state, action: PayloadAction<any[]>){
+            console.log(action)
             state.reports = action.payload
         },
         setPings(state, action: PayloadAction<any[]>){

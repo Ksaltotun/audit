@@ -10,8 +10,8 @@ import { useEffect, useState } from 'react'
 
 
 export const CalendarChart: React.FC = () => {
-  //const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
-  const { reports } = useAppSelector((state) => state.reportsReducer)
+  const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
+
   const perDay = new Map<string, any>()
   //const timeFormat: Intl.DateTimeFormatOptions = {year: 'numeric', month: 'numeric', day: '2-digit'}
   const data: any = []

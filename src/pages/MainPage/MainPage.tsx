@@ -10,26 +10,15 @@ import { AdminPage } from '../AdminPage/AdminPage'
 import { Outlet, useNavigate } from 'react-router-dom'
 import { NavButton } from '../../components/NavButton/NavButton'
 import { ModalWindow } from '../../components/ModalWindow/ModalWindow'
-import data from '../../db.json'
 import { setLoading, setPings, setReports } from '../../redux/reducers/ActionCreators'
+import { reportsApi } from '../../service/ReportService'
 
 
 
 export const MainPage: React.FC = () => {
 
-    const dispatch = useAppDispatch()
-    const {reports} = useAppSelector((state) => state.reportsReducer)
-    
-    useEffect(()=>{
-        setTimeout(()=>{
-            const datas:any[] = data.reportMessages
-            const pings:any[] = data.systemsPing
-            dispatch(setLoading(false))
-            dispatch(setReports(datas))
-            dispatch(setPings(pings))
-        }, 10)
-        setTimeout(()=>{dispatch(setLoading(true))}, 0)
-    }, [])
+    const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
+   
     return (
         <>
         <ModalWindow/>

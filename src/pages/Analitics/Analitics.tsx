@@ -6,15 +6,15 @@ import './Analitics.scss'
 
 
 export const Analitics: React.FC = () => {
-    //const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
-    const { reports, isLoading } = useAppSelector((state) => state.reportsReducer)
+    const fff = reportsApi.useFetchAllReportsQuery(0)
+    const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
+    console.log(reports)
     return (
         isLoading ? <Spinner /> :
             <section className='Analitics'>
                 <h2>Аналитика</h2>
                 {
                     <AnaliticsCharts props={reports || []} />
-
                 }
 
             </section>
