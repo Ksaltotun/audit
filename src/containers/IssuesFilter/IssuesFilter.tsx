@@ -232,6 +232,8 @@ export const IssuesFilter: React.FC = () => {
                 setSystemsFilter([])
                 setModal1Open(false)
             }}
+            okText="Добавить"
+            cancelText="Отмена"
         >
             <TreeSelect {...tProps} />
         </Modal>],
@@ -246,6 +248,8 @@ export const IssuesFilter: React.FC = () => {
             onCancel={() => {
                 setModal1Open(false)
             }}
+            okText="Добавить"
+            cancelText="Отмена"
         >
             <div className='filterForm'>
                 <Space direction="vertical" size={12}>
@@ -281,6 +285,8 @@ export const IssuesFilter: React.FC = () => {
                 setSystemsFilter([])
                 setModal1Open(false)
             }}
+            okText="Добавить"
+            cancelText="Отмена"
         >
             <Select
                 mode="multiple"

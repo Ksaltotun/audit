@@ -20,7 +20,7 @@ export const SYSTEMS_COLOR_SETTINGS = new Map<string, any>([
 
 export const eventType= {
   "systemError": "Системная ошибка",
-  "security": "Инцидент безопасности",
+  "security": "Событие безопасности",
   "systemAction": "Системное событие",
   "userAction": "Действие пользователя"
 }

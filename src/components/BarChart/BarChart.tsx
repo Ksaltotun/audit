@@ -6,28 +6,32 @@ interface IProps {
   props: Map<string, any>
 }
 
+
+
 export const BarChart: React.FC<IProps> = ({props}:IProps) => {
    const data: any= []
+
+   
 
   props.forEach(({security, systemError, systemAction, userAction}, k)=>{
     data.push({
       "system": k,
-      security,
-      systemError,
-      systemAction,
-      userAction
+      'Событие безопасности': security,
+      'Системная ошибка':systemError,
+      'Системное событие':systemAction,
+      'Действие пользователя':userAction
     })
   })
+ 
     return (
         <ResponsiveBarCanvas
         data={data}
         keys={[
-            'security',
-            'systemError',
-            'systemAction',
-            'userAction',
+            'Событие безопасности',
+            // 'Системная ошибка',
+            // 'Системное событие',
+            // 'Действие пользователя',
           ]}
-        
         indexBy="system"
         margin={{ top: 50, right: 90, bottom: 50, left: 10 }}
         pixelRatio={1.25}

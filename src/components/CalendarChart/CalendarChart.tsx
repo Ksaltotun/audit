@@ -15,7 +15,7 @@ export const CalendarChart: React.FC = () => {
   const perDay = new Map<string, any>()
   //const timeFormat: Intl.DateTimeFormatOptions = {year: 'numeric', month: 'numeric', day: '2-digit'}
   const data: any = []
-  
+  console.dir(reports)
 
   reports?.forEach(report => {
     const date = new Date(report.dateApp).toISOString().slice(0, 10)
@@ -35,8 +35,8 @@ export const CalendarChart: React.FC = () => {
   return (
     <ResponsiveCalendar
       data={data}
-      from="2024-01-01"
-      to="2024-12-31"
+      from="2025-01-01"
+      to="2025-12-31"
       emptyColor="#eeeeee"
       colors={['#61cdbb', '#97e3d5', '#e8c1a0', '#f47560']}
       margin={{ top: 40, right: 40, bottom: 40, left: 40 }}

@@ -16,7 +16,7 @@ export const Header: React.FC = () => {
             </div>
             <div className="AuthInfo">
 
-                <span>Admin</span>
+                {/* <span>Admin</span> */}
 
                 <Button type={'navigate'} text={'Выход'} />
             </div>

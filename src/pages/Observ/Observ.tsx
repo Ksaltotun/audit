@@ -39,7 +39,7 @@ export const Observ: React.FC = () => {
                 let y: string = item['y']['animVal']['value']
                 let width: string = item['width']['animVal']['value']
                 let height: string = item['height']['animVal']['value']
-                console.dir(item)
+               
                 gElement?.appendChild(makeText(x, y, width, height, datas[ind] + ''))
             })
 

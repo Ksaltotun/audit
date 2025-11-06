@@ -4,6 +4,7 @@ import './index.scss';
 import App from './App';
 import { setupStore } from './redux/store';
 import { Provider } from 'react-redux';
+import CsrfProtected from './service/security';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,12 +14,11 @@ const store = setupStore()
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    
+       <Provider store={store}>
+        <App />
+      </Provider>
     
   </React.StrictMode>
 );
-
-
 

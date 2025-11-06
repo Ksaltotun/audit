@@ -19,10 +19,11 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: flex-end;
         & button, span {
             display: block;
         }
+        padding: 0 1rem;
     }
     
 }

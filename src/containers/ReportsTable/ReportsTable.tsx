@@ -23,7 +23,7 @@ export const ReportsTable: React.FC<any> = (props) => {
     const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
     const [modal1Open, setModal1Open] = useState<any>(false);
     const dispatch = useAppDispatch()
-
+    const timeFormat: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'numeric', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Minsk' }
     interface TableParams {
         pagination?: TablePaginationConfig;
         sortField?: SorterResult<any>['field'];
@@ -49,13 +49,14 @@ export const ReportsTable: React.FC<any> = (props) => {
             title: 'Дата (в системе)',
             dataIndex: 'dateApp',
             render: (date) => {
-                const timeFormat: Intl.DateTimeFormatOptions = { year: 'numeric' ,month: 'numeric', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false,timeZone: 'UTC' }
+
                 return (new Date(date)).toLocaleString("ru", timeFormat)
             },
             sorter: (a, b) => {
                 return (new Date(a.dateApp)).getTime() - (new Date(b.dateApp)).getTime()
             },
-            width: '20%',
+            defaultSortOrder: 'descend',
+            width: '15%',
         },
         {
             title: 'Система',
@@ -64,7 +65,7 @@ export const ReportsTable: React.FC<any> = (props) => {
             render: (name: TSystemNames) => {
                 return systemNames[name]
             },
-            width: '20%',
+            width: '15%',
         },
         {
             title: 'Тип события',
@@ -78,13 +79,12 @@ export const ReportsTable: React.FC<any> = (props) => {
                     </Tag>
                 </>
             },
-            width: '20%',
+            width: '15%',
         },
         {
             title: 'Сообщение',
             dataIndex: 'message',
             sorter: false,
-            width: '20%',
         },
     ];
 
@@ -107,19 +107,34 @@ export const ReportsTable: React.FC<any> = (props) => {
             onCancel={() => {
                 setModal1Open(false)
             }}
+            okText="Ясно"
+            footer={(_, { OkBtn }) => (
+                <>
+                    <OkBtn />
+                </>
+            )}
         >
             <div className='reportDetail'>
                 <dl>
                     <dt>Дата в системе</dt>
-                    <dd>{modal1Open.dateApp}</dd>
+                    <dd>{(new Date(modal1Open.dateApp)).toLocaleString("en", timeFormat)}</dd>
                     <dt>Дата в КИС "Аудит"</dt>
-                    <dd>{modal1Open.dateKis}</dd>
+                    <dd>{(new Date(modal1Open.dateKIS)).toLocaleString("en", timeFormat)}</dd>
                     <dt>Id в системе</dt>
                     <dd>{modal1Open.idEvent}</dd>
                     <dt>Id в КИС "Аудит"</dt>
                     <dd>{modal1Open.id}</dd>
                     <dt>Тип события</dt>
                     <dd>{eventType[modal1Open.event as EventTagType]}</dd>
+                    <dt>Данные о пользователе</dt>
+                    <dd>
+                        <dl>
+                            <dt>Имя пользователя</dt>
+                            <dd>{modal1Open.user?.userName}</dd>
+                            <dt>Роль пользователя</dt>
+                            <dd>{modal1Open.user?.userRole}</dd>
+                        </dl>
+                    </dd>
                     <dt>Сообщение от системы</dt>
                     <dd>{modal1Open.message}</dd>
                     {
@@ -148,14 +163,14 @@ export const ReportsTable: React.FC<any> = (props) => {
                 </div>
             </div>
 
+
         </Modal>
         <Table<IReportMessage>
             onRow={(record, rowIndex) => {
                 return {
                     onClick: (event) => {
-                        console.log(record)
                         setModal1Open(record)
-                    }, 
+                    },
                 };
             }}
             columns={columns}
@@ -181,28 +196,28 @@ export const ReportsTable: React.FC<any> = (props) => {
                         })
                         .filter((report) => {
                             if (eventFilter.length) {
-                                
+
                                 return eventFilter.indexOf(report.event) > -1
                             }
                             return true
                         })
                         .filter((report) => {
                             if (idKISFilter.length) {
-                                
+
                                 return idKISFilter.indexOf(report.id) > -1
                             }
                             return true
                         })
                         .filter((report) => {
                             if (idUserFilter.length) {
-                                
+
                                 return idUserFilter.indexOf((report.user.userId).toString()) > -1
                             }
                             return true
                         })
                         .filter((report) => {
                             if (messageFilter) {
-                                
+
                                 return report.message.indexOf(messageFilter) > -1
                             }
                             return true
