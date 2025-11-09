@@ -10,13 +10,24 @@ import { Pings } from './pages/Pings/Pings';
 
 import HashProtected from './service/security';
 import HashHandler from './handler';
-
+import Error403 from './pages/Errors/Error403';
+import Error401 from './pages/Errors/Error401';
+import Error404 from './pages/Errors/Error404';
+import Error500 from './pages/Errors/Error500';
+import Error from './pages/Errors/Error';
 function App() {
 
   return (
     <BrowserRouter>
+      <HashProtected>
+        <HashHandler />
         <Routes>
           <Route path="/" element={<LoginPage />} />
+          <Route path='401' element={<Error401 error={null}/>} />
+          <Route path='403' element={<Error403 />} />
+          <Route path='404' element={<Error404 />} />
+          <Route path='500' element={<Error500 />} />
+          <Route path='error' element={<Error />} />
           <Route element={<MainPage />}>
             <Route path="analitics" element={<Analitics />} />
             <Route path="observe" element={<Observ />} />
@@ -25,7 +36,8 @@ function App() {
             <Route path="pings" element={<Pings />} />
           </Route>
         </Routes>
-     </BrowserRouter>
+      </HashProtected>
+    </BrowserRouter>
   );
 }
 

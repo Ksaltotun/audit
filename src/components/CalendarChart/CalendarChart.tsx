@@ -32,11 +32,14 @@ export const CalendarChart: React.FC = () => {
       day: k
     })
   })
+
+  const currentYear = `${(new Date().getFullYear())}-12-31`
+ 
   return (
     <ResponsiveCalendar
       data={data}
-      from="2025-01-01"
-      to="2025-12-31"
+      from="2024-01-01"
+      to={currentYear}
       emptyColor="#eeeeee"
       colors={['#61cdbb', '#97e3d5', '#e8c1a0', '#f47560']}
       margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
@@ -49,8 +52,7 @@ export const CalendarChart: React.FC = () => {
       dayBorderWidth={2}
       dayBorderColor="#ffffff"
       monthSpacing={4}
-      
-
+     
     />
   )
 }

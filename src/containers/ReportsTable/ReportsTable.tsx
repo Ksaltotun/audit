@@ -14,6 +14,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { Spinner } from '../../components/Spinner/Spinner'
 import { setLoading } from '../../redux/reducers/ActionCreators'
 import { eventType, systemNames } from '../../utils'
+import Error403 from '../../pages/Errors/Error403'
 
 
 export const ReportsTable: React.FC<any> = (props) => {
@@ -21,9 +22,47 @@ export const ReportsTable: React.FC<any> = (props) => {
     type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
     const { systemsFilter, dateFilter, eventFilter, idKISFilter, idUserFilter, messageFilter, applied } = useAppSelector((state) => state.filterIssuesReducer)
     const { data: reports, error, isLoading, refetch } = reportsApi.useFetchAllReportsQuery(0)
-    const [modal1Open, setModal1Open] = useState<any>(false);
-    const dispatch = useAppDispatch()
+
+    const navigate = useNavigate();
     const timeFormat: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'numeric', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Minsk' }
+    const [tableParams, setTableParams] = useState<TableParams>({
+        pagination: {
+            current: 1,
+            pageSize: 6,
+        },
+    });
+    useEffect(() => {
+        if (error && 'status' in error) {
+            switch (error.status) {
+                case 401:
+                    navigate('/401', { state: { error: error.data } });
+                    break;
+                case 403:
+                    navigate('/403', { state: { error: error.data } });
+                    break;
+                case 404:
+                    navigate('/404', { state: { error: error.data } });
+                    break;
+                case 500:
+                    navigate('/500', { state: { error: error.data } });
+                    break;
+                default:
+                    navigate('/error', { state: { error: error.data } });
+            }
+        }
+    }, [error, navigate]);
+    const [modal1Open, setModal1Open] = useState<any>(false);
+    if (isLoading) return <Spinner />
+
+
+
+
+
+
+
+
+
+
     interface TableParams {
         pagination?: TablePaginationConfig;
         sortField?: SorterResult<any>['field'];
@@ -31,12 +70,7 @@ export const ReportsTable: React.FC<any> = (props) => {
     }
     type TSystemNames = "KIS" | "GSZ" | "ASU" | "BDN";
 
-    const [tableParams, setTableParams] = useState<TableParams>({
-        pagination: {
-            current: 1,
-            pageSize: 6,
-        },
-    });
+
 
     const columns: ColumnsType<IReportMessage> = [
         {
@@ -96,7 +130,7 @@ export const ReportsTable: React.FC<any> = (props) => {
         });
     };
 
-    return isLoading ? <Spinner /> : <div className='ReportsTable' >
+    return <div className='ReportsTable' >
         <Modal
             title={modal1Open?.appInfo?.appName}
             centered

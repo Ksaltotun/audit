@@ -1,5 +1,6 @@
 import React from 'react';
 import Cookies from 'js-cookie';
+import Error401 from '../pages/Errors/Error401';
 
 interface CsrfProtectedProps {
   children: React.ReactNode;
@@ -16,10 +17,7 @@ const HashProtected: React.FC<CsrfProtectedProps> = ({ children }) => {
 
   if (!hash && !hashFromQuery) {
     return (
-      <div>
-        <h1>Ошибка безопасности</h1>
-        <p>Для работы с приложением необходимо включить куки и обновить страницу. </p>
-      </div>
+     <Error401 error={'Нет куки безопасности, попробуйте еще раз'}/>
     );
   }
   return <>{children}</>;
