@@ -188,7 +188,7 @@ export const IssuesFilter: React.FC = () => {
                 <div onClick={() => {
                     setMode('idKIS')
                     setModal1Open(true)
-                }}> По Id в КИС "Аудит"
+                }}> По Id в Аудите систем
                 </div>
             ),
             key: '5',
@@ -300,7 +300,7 @@ export const IssuesFilter: React.FC = () => {
             />
         </Modal>],
         ['idKIS', <Modal
-            title="Показывать по ID в КИС 'Аудит'"
+            title="Показывать по ID в Аудите систем"
             style={{ top: 20 }}
             open={modal1Open}
             footer={[]}
@@ -315,7 +315,7 @@ export const IssuesFilter: React.FC = () => {
             }}
         >
             <Space.Compact style={{ width: '100%' }}>
-                <Input defaultValue="" placeholder='Id в КИС "Аудит"' value={idKISF[0]} onChange={({target})=>{
+                <Input defaultValue="" placeholder='Id в Аудите систем' value={idKISF[0]} onChange={({target})=>{
                     setIdKISF([target.value])
 
                 }}/>

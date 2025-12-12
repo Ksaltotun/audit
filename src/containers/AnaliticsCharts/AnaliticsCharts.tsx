@@ -47,14 +47,13 @@ export const AnaliticsCharts: React.FC<IProps> = ({ props }: IProps) => {
 
         const dateY = (new Date(rep.dateApp)).getFullYear() + ''
         const dateM = (new Date(rep.dateApp)).getMonth()
-        if (perYear.has(dateY)) {
-            const pp = perYear.get(dateY)
-            pp[dateM] = { [MONTHS[dateM]]: pp[dateM][MONTHS[dateM]] += 1 }
-
-            perYear.set(dateY, [...pp])
-        } else {
+        if (!perYear.has(dateY)) {
             perYear.set(dateY, MONTHS.map(item => ({ [item]: 0 })))
         }
+        const pp = perYear.get(dateY)
+        pp[dateM] = { [MONTHS[dateM]]: pp[dateM][MONTHS[dateM]] += 1 }
+        
+        perYear.set(dateY, [...pp])
     })
 
     return (

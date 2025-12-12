@@ -33,7 +33,7 @@ export const BarChart: React.FC<IProps> = ({props}:IProps) => {
             // 'Действие пользователя',
           ]}
         indexBy="system"
-        margin={{ top: 50, right: 90, bottom: 50, left: 10 }}
+        margin={{ top: 50, right: 190, bottom: 50, left: 110 }}
         pixelRatio={1.25}
         padding={0.15}
         innerPadding={0}
@@ -78,7 +78,7 @@ export const BarChart: React.FC<IProps> = ({props}:IProps) => {
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'food',
+            legend: 'Кол-во репортов',
             legendPosition: 'middle',
             legendOffset: -40,
             truncateTickAt: 0

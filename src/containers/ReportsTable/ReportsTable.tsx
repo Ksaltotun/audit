@@ -14,10 +14,10 @@ import { useAppDispatch, useAppSelector } from '../../hooks/redux'
 import { Spinner } from '../../components/Spinner/Spinner'
 import { setLoading } from '../../redux/reducers/ActionCreators'
 import { eventType, systemNames } from '../../utils'
-import Error403 from '../../pages/Errors/Error403'
 
 
 export const ReportsTable: React.FC<any> = (props) => {
+    
     type ColumnsType<T extends object = object> = TableProps<T>['columns'];
     type TablePaginationConfig = Exclude<GetProp<TableProps, 'pagination'>, boolean>;
     const { systemsFilter, dateFilter, eventFilter, idKISFilter, idUserFilter, messageFilter, applied } = useAppSelector((state) => state.filterIssuesReducer)
@@ -54,15 +54,6 @@ export const ReportsTable: React.FC<any> = (props) => {
     const [modal1Open, setModal1Open] = useState<any>(false);
     if (isLoading) return <Spinner />
 
-
-
-
-
-
-
-
-
-
     interface TableParams {
         pagination?: TablePaginationConfig;
         sortField?: SorterResult<any>['field'];
@@ -70,15 +61,8 @@ export const ReportsTable: React.FC<any> = (props) => {
     }
     type TSystemNames = "KIS" | "GSZ" | "ASU" | "BDN";
 
-
-
     const columns: ColumnsType<IReportMessage> = [
-        {
-            title: 'Id в системе',
-            dataIndex: 'idEvent',
-            sorter: false,
-            width: '20%',
-        },
+   
         {
             title: 'Дата (в системе)',
             dataIndex: 'dateApp',
@@ -106,7 +90,6 @@ export const ReportsTable: React.FC<any> = (props) => {
             dataIndex: 'event',
             sorter: false,
             render: (_, { event }) => {
-
                 return <>
                     <Tag color={'red'} >
                         {eventType[event].toUpperCase()}
@@ -129,7 +112,7 @@ export const ReportsTable: React.FC<any> = (props) => {
             sortField: Array.isArray(sorter) ? undefined : sorter.field,
         });
     };
-
+   
     return <div className='ReportsTable' >
         <Modal
             title={modal1Open?.appInfo?.appName}
@@ -141,7 +124,7 @@ export const ReportsTable: React.FC<any> = (props) => {
             onCancel={() => {
                 setModal1Open(false)
             }}
-            okText="Ясно"
+            okText="Ок"
             footer={(_, { OkBtn }) => (
                 <>
                     <OkBtn />
@@ -151,24 +134,29 @@ export const ReportsTable: React.FC<any> = (props) => {
             <div className='reportDetail'>
                 <dl>
                     <dt>Дата в системе</dt>
-                    <dd>{(new Date(modal1Open.dateApp)).toLocaleString("en", timeFormat)}</dd>
-                    <dt>Дата в КИС "Аудит"</dt>
-                    <dd>{(new Date(modal1Open.dateKIS)).toLocaleString("en", timeFormat)}</dd>
+                    <dd>{(new Date(modal1Open.dateApp)).toLocaleString("ru", timeFormat)}</dd>
+                    <dt>Дата в Аудите систем</dt>
+                    <dd>{(new Date(modal1Open.dateKIS)).toLocaleString("ru", timeFormat)}</dd>
                     <dt>Id в системе</dt>
                     <dd>{modal1Open.idEvent}</dd>
-                    <dt>Id в КИС "Аудит"</dt>
+                    <dt>Id в Аудите систем</dt>
                     <dd>{modal1Open.id}</dd>
                     <dt>Тип события</dt>
                     <dd>{eventType[modal1Open.event as EventTagType]}</dd>
-                    <dt>Данные о пользователе</dt>
+                    {modal1Open.user?.name ? <>
+                      <dt>Данные о пользователе</dt>
                     <dd>
                         <dl>
                             <dt>Имя пользователя</dt>
                             <dd>{modal1Open.user?.userName}</dd>
-                            <dt>Роль пользователя</dt>
-                            <dd>{modal1Open.user?.userRole}</dd>
+                            {
+                                modal1Open.user?.userRole && 
+                                    <> <dt>Роль пользователя</dt>
+                                    <dd>{modal1Open.user?.userRole}</dd></>
+                            }
                         </dl>
-                    </dd>
+                    </dd>      
+                    </> : null}
                     <dt>Сообщение от системы</dt>
                     <dd>{modal1Open.message}</dd>
                     {
@@ -214,8 +202,10 @@ export const ReportsTable: React.FC<any> = (props) => {
                     reports?.
                         filter((report) => {
                             if (systemsFilter.length) {
-                                console.log(systemsFilter)
-                                return report.appInfo.systemDetail.indexOf('yy') > -1
+                                console.log(report.appInfo.systemDetail)
+                                console.dir(systemsFilter)
+                                const searchRow = systemsFilter.join('.')
+                                return report.appInfo.systemDetail.indexOf(systemsFilter[0] === 'KIS' ? 'КИС' : systemsFilter[0] ) > -1
                             }
                             return true
                         })
@@ -260,7 +250,6 @@ export const ReportsTable: React.FC<any> = (props) => {
             pagination={tableParams.pagination}
             loading={false}
             onChange={handleTableChange}
-
         />
     </div>
 }

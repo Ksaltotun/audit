@@ -19,8 +19,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <HashProtected>
-        <HashHandler />
+     
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path='401' element={<Error401 error={null}/>} />
@@ -36,7 +35,7 @@ function App() {
             <Route path="pings" element={<Pings />} />
           </Route>
         </Routes>
-      </HashProtected>
+
     </BrowserRouter>
   );
 }

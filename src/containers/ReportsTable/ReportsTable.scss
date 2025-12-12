@@ -9,11 +9,34 @@
     & tr {
         cursor: pointer;
     }
-
-
 }
 
 .systemTree{
     height: 200px;
 }
 
+.ant-table-content {
+  max-height: 72vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  & thead{
+    position: sticky;
+    z-index: 10;
+    top: 0;
+  }
+
+  scrollbar-color: #034dd7 rgba(4, 127, 228, 0.298);
+}
+
+.ant-table-content::-webkit-scrollbar {
+  width: 1px;
+}
+
+.ant-table-content::-webkit-scrollbar-track {
+  background: rgba(9, 52, 221, 0.366);
+}
+
+.ant-table-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(to left, #4e3cee, #117dd5 50%, #04c6e4 75%, #333333 75%);
+  border-radius: 4px;
+}
